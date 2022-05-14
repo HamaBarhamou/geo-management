@@ -4,7 +4,7 @@ const Home = () => {
     return (
         <div>
             <h1>Welcome</h1>
-            <h2> begin the Tracker GPS of the engin </h2>
+            <h2> begin the Tracker GPS of the engin ... </h2>
         </div>
     );
 };
