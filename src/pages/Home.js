@@ -10,6 +10,7 @@ const Home = () => {
             <Head/>
             <Onglet/>
             <Setting/>
+            <Body/>
         </div>
     );
 };
