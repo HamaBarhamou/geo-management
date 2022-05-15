@@ -1,10 +1,15 @@
 import React from 'react';
+import Body from '../components/Body';
+import Head from '../components/Head';
+import Onglet from '../components/Onglet'
+import Setting from '../components/Setting';
 
 const Home = () => {
     return (
         <div>
-            <h1>Welcome</h1>
-            <h2> begin the Tracker GPS of the engin ... </h2>
+            <Head/>
+            <Onglet/>
+            <Setting/>
         </div>
     );
 };
