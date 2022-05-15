@@ -20,7 +20,7 @@ div{
   color : yellowgreen;
 }
 
-.container1 {
+.container2 {
   display: flex;
   flex-wrap: wrap;
 
@@ -29,3 +29,11 @@ div{
   height: 50vh;
 }
 
+.container3 {
+  display: flex;
+  flex-wrap: wrap;
+
+  padding: 1%;
+  flex: 1 0 50%;
+  height: 50vh;
+}
