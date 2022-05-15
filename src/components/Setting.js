@@ -3,7 +3,8 @@ import React from 'react';
 const Setting = () => {
     return (
         <div>
-            <h1>Setting</h1>
+            <h2>Setting</h2>
+            <input type ="text"/>
         </div>
     );
 };

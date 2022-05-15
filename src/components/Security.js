@@ -6,11 +6,13 @@ import Excesvitesse from './Excesvitesse';
 
 const Security = () => {
     return (
-        <div>
+        <div className="container1">
+            
             <Deplacementnonautoriser/>
             <Excesvitesse/>
             <Conduitetime/>
             <Comportementconduite/>
+            
         </div>
     );
 };

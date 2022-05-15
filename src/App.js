@@ -6,7 +6,7 @@
 /*   By: Barhamou <hamabarhamou@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 20:07:57 by Barhamou          #+#    #+#             */
-/*   Updated: 2022/05/15 10:27:25 by Barhamou         ###   ########.fr       */
+/*   Updated: 2022/05/15 15:53:49 by Barhamou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="*" element={<Home />} />
-        <Route path= "/about" element={<About />} />
-        
+        <Route path= "/about" element={<About />} />  
       </Routes>
     </BrowserRouter>
   );
