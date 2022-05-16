@@ -7,10 +7,15 @@ import Retourprecosse from './Retourprecosse';
 const Performance = () => {
     return (
         <div>
-            <Kilometrage/>
-            <Arret/>
-            <Departtardive/>
-            <Retourprecosse/>
+            <h2>Performance</h2>
+            <div>
+                <Kilometrage/>
+                <Arret/>
+            </div>
+            <div>
+                <Departtardive/>
+                <Retourprecosse/>
+            </div>
         </div>
     );
 };

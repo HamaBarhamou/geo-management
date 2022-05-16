@@ -7,13 +7,14 @@ import Excesvitesse from './Excesvitesse';
 const Security = () => {
     return (
         <div className="container1">
+            <h2>Security</h2>
             <div className="container2">
-            <Deplacementnonautoriser/>
-            <Excesvitesse/>
+                <Deplacementnonautoriser/>
+                <Excesvitesse/>
             </div>
             <div className="container3">
-            <Conduitetime/>
-            <Comportementconduite/>
+                <Conduitetime/>
+                <Comportementconduite/>
             </div>
         </div>
     );
