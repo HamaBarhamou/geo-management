@@ -6,14 +6,12 @@
 /*   By: Barhamou <hamabarhamou@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 21:30:49 by Barhamou          #+#    #+#             */
-/*   Updated: 2022/05/16 22:07:18 by Barhamou         ###   ########.fr       */
+/*   Updated: 2022/05/16 22:35:18 by Barhamou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 import React, { useState } from "react";
-import ReactDOM from "react-dom";
-import { Route } from "react-router-dom";
-import { Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import '../styles/App.scss';
 
 const Connexion = () => {
@@ -91,7 +89,7 @@ const Connexion = () => {
     <div className="app">
       <div className="login-form">
         <div className="title">Sign In</div>
-            {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
+            {isSubmitted ?  <Navigate to="/home"  />: renderForm}
       </div>
     </div>
   );
