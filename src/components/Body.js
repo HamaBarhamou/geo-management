@@ -4,7 +4,7 @@ import Performance from './Performance';
 
 const Body = () => {
     return (
-        <div>
+        <div className="body1">
             <Security/>
             <Performance/>
         </div>
