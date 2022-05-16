@@ -6,7 +6,7 @@
 /*   By: Barhamou <hamabarhamou@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 20:07:57 by Barhamou          #+#    #+#             */
-/*   Updated: 2022/05/16 22:36:08 by Barhamou         ###   ########.fr       */
+/*   Updated: 2022/05/16 22:49:36 by Barhamou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Connexion/>} />
         <Route path= "/about" element={<About />} />
-        <Route path= "/home" element={<Home />} />  
+        <Route path= "/home" element={<Home />} /> 
+        <Route path= "/trackergps_fontend" element={<Connexion />} /> 
       </Routes>
     </BrowserRouter>
   );
