@@ -1,9 +1,15 @@
 import React from 'react';
+import logo from '../images/logo.png';
+
+const HeadStyle={
+    height: '60px',
+    display: 'flex',
+}
 
 const Head = () => {
     return (
-        <div>
-            <h1>Head for page</h1>
+        <div style={HeadStyle}>
+            <img src={logo} />
         </div>
     );
 };
