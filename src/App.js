@@ -6,7 +6,7 @@
 /*   By: Barhamou <hamabarhamou@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 20:07:57 by Barhamou          #+#    #+#             */
-/*   Updated: 2022/05/16 22:49:36 by Barhamou         ###   ########.fr       */
+/*   Updated: 2022/05/17 12:27:22 by Barhamou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@ import {BrowserRouter, Routes, Route} from "react-router-dom";
 import About from "./pages/About";
 import Connexion from "./pages/Connexion";
 import Home from "./pages/Home";
+
 
 function App() {
   return (

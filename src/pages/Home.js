@@ -6,7 +6,7 @@
 /*   By: Barhamou <hamabarhamou@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 21:31:36 by Barhamou          #+#    #+#             */
-/*   Updated: 2022/05/16 21:31:37 by Barhamou         ###   ########.fr       */
+/*   Updated: 2022/05/17 12:28:43 by Barhamou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@ import Onglet from '../components/Onglet'
 import Setting from '../components/Setting';
 import '../styles/App.scss';
 
+const styleGlobale={
+    margin: '10px'
+}
+  
 const Home = () => {
     const [etat, setEtat] = useState(false);
     const etatfunction = () =>{
@@ -26,7 +30,7 @@ const Home = () => {
     if(etat)
     {
         return (
-            <div>
+            <div style={styleGlobale}>
                 <Head/>
                 <Onglet/>
                 <Setting/>
@@ -38,7 +42,7 @@ const Home = () => {
     else
     {
         return (
-            <div>
+            <div style={styleGlobale}>
                 <Head/>
                 <Onglet/>
                 <Setting/>

@@ -11,20 +11,24 @@ import valider from '../images/valider.png';
 const HeadStyle={
     height: '60px',
     display: 'flex',
-    background: 'green'
+    background: 'green',
+}
+
+const styleT={
+    height: '25px',
 }
 
 const Head = () => {
     return (
         <div style={HeadStyle}>
-            <img src={valider}/>
-            <img src={message}/>
-            <img src={email}/>
-            <img src={etoile}/>
+            <img src={valider} style={styleT}/>
+            <img src={message} style={styleT}/>
+            <img src={email} style={styleT}/>
+            <img src={etoile} style={styleT}/>
             <img src={logo} /> 
-            <img src={pays}/>
-            <img src={recherche}/>
-            <img src={profile}/>
+            <img src={pays} style={styleT}/>
+            <img src={recherche} style={styleT}/>
+            <img src={profile} style={styleT}/>
         </div>
     );
 };
