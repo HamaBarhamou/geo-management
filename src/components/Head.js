@@ -9,6 +9,7 @@ const HeadStyle={
 const Head = () => {
     return (
         <div style={HeadStyle}>
+            <h3>head</h3>
             <img src={logo} /> 
         </div>
     );
