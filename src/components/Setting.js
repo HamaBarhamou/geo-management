@@ -1,27 +1,41 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
 
+const styleSetting={
+    background: '#A9A9A9'
+}
+
 const Setting = () => {
     const { register, handleSubmit } = useForm();
-    const onSubmit = (data) => {
-        console.log(data)
-    };
+    const handleRegistration = (data) => console.log(data);
     return (
-        <div>
-            <h1>Rapport</h1>
-            <h2>Setting</h2>
-            <form onSubmit={handleSubmit(onSubmit)}>
-            <input {...register("firstName")} />
-                <select {...register("gender")}>
-                    <option value="female">female</option>
-                    <option value="male">male</option>
-                    <option value="other">other</option>
-                </select>
-            <input type="submit" />
-            
-                <label> Depart :<input type="datetime-local" name="date_debut" /> </label>
-                <label> fin :<input type="datetime-local" name="date_fin" /> </label>
-                
+        <div style={styleSetting}>
+            <div>
+                <h2>Parametre</h2>
+            </div>
+            <form onSubmit={handleSubmit(handleRegistration)}>
+                <div>
+                    <select name="localistion" {...register('cars')} >
+                        <option value="geographie">Selectionner la geographie</option>
+                        <option value="Vehicule">Vehicule</option>
+                        <option value="Agence">Agence</option>
+                        <option value="Zone">Zone</option>
+                        <option value="National">National</option>
+                    </select>
+
+                    <select name="periode" {...register('periode')} >
+                        <option value="geographie">Selectionner la periodicité</option>
+                        <option value="Jour">Jour</option>
+                        <option value="Semaine">Semaine</option>
+                        <option value="Mois">Mois</option>
+                        <option value="Trimestre">Trimestre</option>
+                    </select>
+                </div>
+                <div>
+                    <input type="datetime-local" name="begindate" {...register('begindate')}/>
+                    <input type="datetime-local" name="dateend" {...register('dateend')}/>
+                </div>
+                <button>Submit</button>
             </form>
         </div>
     );
