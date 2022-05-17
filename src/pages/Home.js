@@ -6,7 +6,7 @@
 /*   By: Barhamou <hamabarhamou@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 21:31:36 by Barhamou          #+#    #+#             */
-/*   Updated: 2022/05/17 12:28:43 by Barhamou         ###   ########.fr       */
+/*   Updated: 2022/05/17 12:59:04 by Barhamou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ import Setting from '../components/Setting';
 import '../styles/App.scss';
 
 const styleGlobale={
-    margin: '10px'
+    margin: '10px',
+    paddingTop: 5
 }
   
 const Home = () => {

@@ -4,15 +4,25 @@ import Departtardive from './Departtardive';
 import Kilometrage from './Kilometrage';
 import Retourprecosse from './Retourprecosse';
 
+const container2 ={
+    /*display: 'flex',*/
+    height: '100px',
+    whdth: '50%'
+}
+
+const stylePerformance={
+    display: 'flex'
+}
+
 const Performance = () => {
     return (
-        <div>
+        <div style={stylePerformance}>
             <h2>Performance</h2>
-            <div>
+            <div style={container2}>
                 <Kilometrage/>
                 <Arret/>
             </div>
-            <div>
+            <div style={container2}>
                 <Departtardive/>
                 <Retourprecosse/>
             </div>
