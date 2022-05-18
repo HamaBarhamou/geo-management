@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Setting.js                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: Barhamou <hamabarhamou@gmail.com>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/18 10:52:44 by Barhamou          #+#    #+#             */
+/*   Updated: 2022/05/18 11:13:32 by Barhamou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 import React from 'react';
 import { useForm } from "react-hook-form";
 
@@ -9,15 +21,18 @@ const styleSetting={
 const Setting = () => {
     const { register, handleSubmit } = useForm();
     const handleRegistration = (data) => {
-        console.log(data)
+        console.log(data);
     };
+    const getinput = (data) => {
+        console.log(data);
+    }
     const form1 = <div style={styleSetting}>
                     <div>
                         <h2>Parametre</h2>
                     </div>
                     <form onSubmit={handleSubmit(handleRegistration)}>
                         <div>
-                            <select name="localistion" {...register('cars')} >
+                            <select name="localistion" {...register('cars')} onChange = {getinput} >
                                 <option value="geographie">Selectionner la geographie</option>
                                 <option value="Vehicule">Vehicule</option>
                                 <option value="Agence">Agence</option>

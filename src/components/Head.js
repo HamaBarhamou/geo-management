@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Head.js                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: Barhamou <hamabarhamou@gmail.com>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/18 10:52:55 by Barhamou          #+#    #+#             */
+/*   Updated: 2022/05/18 12:58:33 by Barhamou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 import React from 'react';
 import logo from '../images/logo.png';
 import email from '../images/email.png';
@@ -12,7 +24,7 @@ const HeadStyle={
     height: '60px',
     display: 'flex',
     /*background: 'green',*/
-    marginLeft: '40%', 
+    marginLeft: '30%', 
 }
 
 const styleT={

@@ -6,12 +6,13 @@ import Retourprecosse from './Retourprecosse';
 
 const container2 ={
     /*display: 'flex',*/
-    height: '100px',
-    whdth: '50%'
+    /*height: '100px',
+    whdth: '50%'*/
+    display: 'flex'
 }
 
 const stylePerformance={
-    display: 'flex'
+    
 }
 
 const Performance = () => {

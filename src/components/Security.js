@@ -6,12 +6,13 @@ import Excesvitesse from './Excesvitesse';
 
 const container2 ={
     /*display: 'flex',*/
-    height: '100px',
-    whdth: '50%'
+    /*height: '100px',
+    whdth: '50%'*/
+    display: 'flex'
 }
 
 const styleSecurity={
-    display: 'flex'
+    
 }
 
 const Security = () => {
