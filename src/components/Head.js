@@ -11,7 +11,8 @@ import valider from '../images/valider.png';
 const HeadStyle={
     height: '60px',
     display: 'flex',
-    background: 'green',
+    /*background: 'green',*/
+    marginLeft: '40%', 
 }
 
 const styleT={
