@@ -8,7 +8,7 @@ const styleBody={
     left: '3%',*/
     /*right: '3%'*/
     /*bottom: '3%'*/
-    background: '#C0C0C0'
+    //background: '#C0C0C0'
 }
 
 const Body = () => {
@@ -16,6 +16,7 @@ const Body = () => {
         <div style={styleBody}>
             <Security/>
             <Performance/>
+            <button>Generer PDF</button>
         </div>
     );
 };

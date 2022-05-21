@@ -6,7 +6,7 @@
 /*   By: Barhamou <hamabarhamou@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 21:31:36 by Barhamou          #+#    #+#             */
-/*   Updated: 2022/05/18 12:53:50 by Barhamou         ###   ########.fr       */
+/*   Updated: 2022/05/22 00:17:04 by Barhamou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ import '../styles/App.scss';
 const styleGlobale={
     margin: '10px',
     paddingTop: 5,
-    background:'#C0C0C0',
+    //background:'#C0C0C0',
+    background:'#f8f9fd',
     margin: '1%',
     left: '1%'
 }

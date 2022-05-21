@@ -9,7 +9,8 @@ const container2 ={
     /*height: '100px',
     whdth: '50%'*/
     display: 'flex',
-    background: 'blue',
+    //background: 'blue',
+    //padding: '3rem'
     
 }
 

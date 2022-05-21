@@ -6,7 +6,7 @@
 /*   By: Barhamou <hamabarhamou@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 10:52:44 by Barhamou          #+#    #+#             */
-/*   Updated: 2022/05/21 18:05:15 by Barhamou         ###   ########.fr       */
+/*   Updated: 2022/05/22 00:26:23 by Barhamou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@ import { useForm } from "react-hook-form";
 import Select from 'react-select'
 
 const styleSetting={
-    background: '#A9A9A9',
+    //background: '#A9A9A9',
+    background: 'white'
 }
 
 const styleDiv={
