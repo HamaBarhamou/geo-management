@@ -6,74 +6,91 @@
 /*   By: Barhamou <hamabarhamou@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 10:52:44 by Barhamou          #+#    #+#             */
-/*   Updated: 2022/05/21 11:06:56 by Barhamou         ###   ########.fr       */
+/*   Updated: 2022/05/21 18:05:15 by Barhamou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-import React, { useState } from 'react';
+import React, { useState, Component } from 'react';
 import { useForm } from "react-hook-form";
+import Select from 'react-select'
 
 const styleSetting={
     background: '#A9A9A9',
-   
 }
 
+const styleDiv={
+    display: 'flex',
+    
+}
 
+const options = [
+    { value: 'chocolate', label: 'Chocolate' },
+    { value: 'strawberry', label: 'Strawberry' },
+    { value: 'vanilla', label: 'Vanilla' }
+]
+
+const dataCollection = [
+    {
+        value: '0',
+        label: '',
+        collection: []
+    },
+    {
+        value: 'geographie',
+        label: 'Selectionner la geographie',
+        collection: [
+            {value:'Niamey',label:'Niamey'},
+            {value:'Zinder',label:'Zinder'},
+            {value:'Maradi',label:'Maradi'},
+            {value:'Thaoua',label:'Thaoua'}
+        ]
+    },
+    {
+        value: 'Vehicule',
+        label: 'Vehicule',
+        collection: [
+            {value:'Voiture',label:'Voiture'},
+            {value:'Moto',label:'Moto'},
+            {value:'Velo',label:'Velo'},
+            {value:'Avion',label:'Avion'}
+        ]
+    },
+    {
+        value: 'Agence',
+        label: 'Agence',
+        collection: [
+            {value:'Agence_de_Niamey',label:'Agence de Niamey'},
+            {value:'Agence_de_Ouaga',label:'Agence de Ouaga'},
+            {value:'Agence_du_Tchad',label:'Agence du Tchad'},
+            {value:'Agence1',label:'Agence1'}
+        ]
+    },
+    {
+        value: 'Zone',
+        label: 'Zone',
+        collection: [
+            {value:'pk5',label:'pk5'},
+            {value:'zone_2',label:'zone_2'},
+            {value:'Fontiere_Mali',label:'Fontiere_Mali'},
+            {value:'Centre_ville',label:'Centre_ville'}
+        ]
+    },
+    {
+        value: 'National',
+        label: 'National',
+        collection: [
+            {value:'Region',label:'Region'},
+            {value:'Commune',label:'Commune'},
+            {value:'Departement',label:'Departement'},
+            {value:'International',label:'International'}
+        ]
+    }
+]
+
+
+//let collection = dataCollection[0].collection;
 
 const Setting = () => {
-
-    const dataCollection1 = [
-        {
-            id: 'geographie',
-            title: 'Selectionner la geographie',
-            collection: [
-                {id:'Niamey',title:'Niamey'},
-                {id:'Zinder',title:'Zinder'},
-                {id:'Maradi',title:'Maradi'},
-                {id:'Thaoua',title:'Thaoua'}
-            ]
-        },
-        {
-            id: 'Vehicule',
-            title: 'Vehicule',
-            collection: [
-                {id:'Voiture',title:'Voiture'},
-                {id:'Moto',title:'Moto'},
-                {id:'Velo',title:'Velo'},
-                {id:'Avion',title:'Avion'}
-            ]
-        },
-        {
-            id: 'Agence',
-            title: 'Agence',
-            collection: [
-                {id:'Agence_de_Niamey',title:'Agence de Niamey'},
-                {id:'Agence_de_Ouaga',title:'Agence de Ouaga'},
-                {id:'Agence_du_Tchad',title:'Agence du Tchad'},
-                {id:'Agence1',title:'Agence1'}
-            ]
-        },
-        {
-            id: 'Zone',
-            title: 'Zone',
-            collection: [
-                {id:'pk5',title:'pk5'},
-                {id:'zone_2',title:'zone_2'},
-                {id:'Fontiere_Mali',title:'Fontiere_Mali'},
-                {id:'Centre_ville',title:'Centre_ville'}
-            ]
-        },
-        {
-            id: 'National',
-            title: 'National',
-            collection: [
-                {id:'Region',title:'Region'},
-                {id:'Commune',title:'Commune'},
-                {id:'Departement',title:'Departement'},
-                {id:'International',title:'International'}
-            ]
-        }
-    ]
     
     const dataCollection2 = [
         {
@@ -98,28 +115,6 @@ const Setting = () => {
         }
     ]
 
-    const dataCollection3 = [
-        {
-            id: 'localistion1',
-            title: 'localistion1',
-        },
-        {
-            id: 'localistion2',
-            title: 'localistion2',
-        },
-        {
-            id: 'localistion3',
-            title: 'localistion3',
-        },
-        {
-            id: 'localistion4',
-            title: 'localistion4',
-        },
-        {
-            id: 'localistion5',
-            title: 'localistion5',
-        }
-    ]
     
     const { register, handleSubmit } = useForm();
     const handleRegistration = (data) => {
@@ -134,60 +129,49 @@ const Setting = () => {
     {
         for(let i = 0; i < data.length; i++)
             {
-                if (id === data[i].id)
+                if (id === data[i].value)
                 {
-                    /*console.log("correspondance");
-                    console.log("id: ",id);
-                    console.log("dataCollection1[",i,",].id: ",data[i].id)*/
-                    return (dataCollection1[i].collection);
+                    return (dataCollection[i].collection);
                 }
-                /*else
-                {
-                    console.log("pas de correspondante");
-                    console.log("id: ",id);
-                    console.log("dataCollection1[",i,",].id: ",data[i].id)
-                }*/
             }
             return ([]);
     }
 
-    const [collection,setColletion] = useState(dataCollection1[0].collection);
+    const [collection,setColletion] = useState(dataCollection[0].collection);
+    //const [collection,setColletion] = useState([]);
     
     const listedynamique = (data) => {
-        console.log("location: ",data)
-        //console.log("get: ",getIdCollection(dataCollection1,data.localisation));
-        setColletion(getIdCollection(dataCollection1,data.localisation));
+        
+        //console.log("avant collection=", collection);
+        setColletion(getIdCollection(dataCollection,data.value));
+        //console.log("apres collection=",collection);
+        
     };
-    const Template = <div style={styleSetting}>
+    const Template1 = <div style={styleSetting}>
                     <div>
                         <h2>Parametre</h2>
                     </div>
-                    <form /*onSubmit={handleSubmit(handleRegistration)}*/>
-                        <div>
-                            <select name='localisation' value={'valeur'} {...register('localisation')} onChange={handleSubmit(listedynamique)}>
-                                {dataCollection1.map(
-                                    (item)=> <option key={item.id} value={item.id}>{item.title}</option>
-                                )}
-                                 
-                            </select>
-                            
+                    <form onSubmit={handleSubmit(handleRegistration)}>
+                        <div style={styleDiv}>
+                            <Select options={dataCollection} 
+                                placeholder="Selectionner la geographie" 
+                                onChange={listedynamique}
+                                />
                             <select name='periode'  {...register('periode')}>
                                 {dataCollection2.map(
                                     (item)=> <option key={item.id} value={item.id}>{item.title}</option>
                                 )}
                             </select>
+                            
                         </div>
                         <div>
-                            <select name='dynamique'  {...register('dynamique')}>
-                                
+                            <select name='dynamique'  {...register('dynamique')}> 
                                 {
                                     collection.map(
-                                        (item)=> <option key={item.id} value={item.id}>{item.title}</option>
-                                    )
-                                    
+                                        (item)=> <option key={item.value} value={item.value}>{item.label}</option>
+                                    )     
                                 }
                             </select>
-                            
                         </div>
                         <div>
                             <input type="datetime-local" name="begindate" {...register('begindate')}/>
@@ -196,9 +180,42 @@ const Setting = () => {
                         <button>Submit</button>
                     </form>
                 </div>
-    return (
-        Template
-    );
+
+    const Template2 = <div style={styleSetting}>
+                        <div>
+                            <h2>Parametre</h2>
+                        </div>
+                        <form onSubmit={handleSubmit(handleRegistration)}>
+                            <div style={styleDiv}>
+                                <Select options={dataCollection} 
+                                    placeholder="Selectionner la geographie" 
+                                    onChange={listedynamique}
+                                    />
+                                <select name='periode'  {...register('periode')}>
+                                    {dataCollection2.map(
+                                        (item)=> <option key={item.id} value={item.id}>{item.title}</option>
+                                    )}
+                                </select>
+                                
+                            </div>
+                            <div>
+                               
+                            </div>
+                            <div>
+                                <input type="datetime-local" name="begindate" {...register('begindate')}/>
+                                <input type="datetime-local" name="dateend" {...register('dateend')}/>
+                            </div>
+                            <button>Submit</button>
+                        </form>
+                        </div>
+    if(collection.length != 0)
+        return (
+            Template1
+        );
+    else
+        return(
+            Template2
+        )
 };
 
 export default Setting;
