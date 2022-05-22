@@ -6,23 +6,27 @@
 /*   By: Barhamou <hamabarhamou@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 10:52:44 by Barhamou          #+#    #+#             */
-/*   Updated: 2022/05/22 00:26:23 by Barhamou         ###   ########.fr       */
+/*   Updated: 2022/05/22 18:44:32 by Barhamou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 import React, { useState, Component } from 'react';
 import { useForm } from "react-hook-form";
 import Select from 'react-select'
+import Progressbarre from './Progressbarre';
 
 const styleSetting={
     //background: '#A9A9A9',
-    background: 'white'
+    background: 'white',
+    //height: 'height',
+    //width: '100%',
 }
 
 const styleDiv={
     display: 'flex',
     
 }
+
 
 const options = [
     { value: 'chocolate', label: 'Chocolate' },
@@ -178,6 +182,10 @@ const Setting = () => {
                             <input type="datetime-local" name="begindate" {...register('begindate')}/>
                             <input type="datetime-local" name="dateend" {...register('dateend')}/>
                         </div>
+                        <div style={styleDiv}>
+                                <Progressbarre bgcolor="#99ccff" progress='30'  height={20}/>
+                                <Progressbarre bgcolor="#99ccff" progress='40'  height={20}/>
+                            </div>
                         <button>Submit</button>
                     </form>
                 </div>
@@ -205,6 +213,10 @@ const Setting = () => {
                             <div>
                                 <input type="datetime-local" name="begindate" {...register('begindate')}/>
                                 <input type="datetime-local" name="dateend" {...register('dateend')}/>
+                            </div>
+                            <div style={styleDiv}>
+                                <Progressbarre bgcolor="#99ccff" progress='30'  height={20} />
+                                <Progressbarre bgcolor="#99ccff" progress='40'  height={20}/>
                             </div>
                             <button>Submit</button>
                         </form>
