@@ -6,7 +6,7 @@
 /*   By: Barhamou <hamabarhamou@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 10:52:44 by Barhamou          #+#    #+#             */
-/*   Updated: 2022/05/23 15:00:05 by Barhamou         ###   ########.fr       */
+/*   Updated: 2022/05/23 16:12:54 by Barhamou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,16 +186,18 @@ const Setting = () => {
                                     </div>
                                     <div style={styleDiv}>
                                             <Progressbarre 
-                                                bgcolor="#99ccff" 
+                                                bgcolor="#DC143C" 
                                                 progress='30'  
                                                 height={20}
-                                                message="text a afficher"
+                                                message="EXCES DE VITESSE Tolerence: "
+                                                unite="%"
                                             />
                                             <Progressbarre 
-                                                bgcolor="#99ccff" 
+                                                bgcolor="#DC143C" 
                                                 progress='40'  
                                                 height={20}
-                                                message="text a afficher"
+                                                message="DEPART TARDIVE Tolerence: "
+                                                unite="minutes"
                                             />
                                         </div>
                                     <button>Submit</button>
@@ -229,16 +231,18 @@ const Setting = () => {
                             </div>
                             <div style={styleDiv}>
                                 <Progressbarre 
-                                    bgcolor="#99ccff" 
+                                    bgcolor="#DC143C" 
                                     progress='30'  
                                     height={20} 
-                                    message="text a afficher"
+                                    message="EXCES DE VITESSE Tolerence: "
+                                    unite="%"
                                 />
                                 <Progressbarre 
-                                    bgcolor="#99ccff" 
+                                    bgcolor="#DC143C" 
                                     progress='40'  
                                     height={20}
-                                    message="text a afficher"
+                                    message="DEPART TARDIVE Tolerence: "
+                                    unite="minutes"
                                 />
                             </div>
                             <button>Submit</button>

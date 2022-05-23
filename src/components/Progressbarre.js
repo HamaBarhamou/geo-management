@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 
-const Progressbarre = ({bgcolor,progress,height,message}) => {
+const Progressbarre = ({bgcolor,progress,height,message, unite}) => {
 
   const [progresse1,setProgesse1] = useState(15);
 
@@ -17,7 +17,7 @@ const Progressbarre = ({bgcolor,progress,height,message}) => {
         height: '100%',
         width: `${progresse1}%`,
         backgroundColor: bgcolor,
-       borderRadius:40,
+        borderRadius:40,
         textAlign: 'right'
       }
       
@@ -38,19 +38,21 @@ const Progressbarre = ({bgcolor,progress,height,message}) => {
     }
 
     return (
-      <div style={{width: '100%'}}>
-        {message}
-      <div style={{display:'flex',width: '100%',padding:5}}>
-          <input type="button" value="-" onClick={decrementation}/>
-          <div style={Parentdiv}>
-            <div style={Parentdiv}>
-                <div style={Childdiv}>
-                  <span style={progresstext}> {progresse1}% </span>
-                </div>
-            </div>
+      <div style={{width: '100%',padding:2}}>
+          <div style={{backgroundColor: bgcolor,color: 'white',fontWeight: 900}}>
+              {message} {progresse1} {unite}
           </div>
-          <input type="button" value="+" onClick={incrementation}/>
-      </div>
+          <div style={{display:'flex',width: '100%',padding:5}}>
+              <input type="button" value="-" onClick={decrementation}/>
+              <div style={Parentdiv}>
+                <div style={Parentdiv}>
+                    <div style={Childdiv}>
+                      <span style={progresstext}> {progresse1} </span>
+                    </div>
+                </div>
+              </div>
+              <input type="button" value="+" onClick={incrementation}/>
+          </div>
       </div>
     );
 };
