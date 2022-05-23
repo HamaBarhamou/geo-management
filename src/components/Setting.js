@@ -6,7 +6,7 @@
 /*   By: Barhamou <hamabarhamou@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 10:52:44 by Barhamou          #+#    #+#             */
-/*   Updated: 2022/05/22 18:44:32 by Barhamou         ###   ########.fr       */
+/*   Updated: 2022/05/23 15:00:05 by Barhamou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,13 @@ const styleSetting={
     //background: '#A9A9A9',
     background: 'white',
     //height: 'height',
-    //width: '100%',
+    width: '100%',
+    margin: 10
 }
 
 const styleDiv={
     display: 'flex',
-    
+    margin: 20
 }
 
 
@@ -153,42 +154,54 @@ const Setting = () => {
         
     };
     const Template1 = <div style={styleSetting}>
-                    <div>
-                        <h2>Parametre</h2>
-                    </div>
-                    <form onSubmit={handleSubmit(handleRegistration)}>
-                        <div style={styleDiv}>
-                            <Select options={dataCollection} 
-                                placeholder="Selectionner la geographie" 
-                                onChange={listedynamique}
-                                />
-                            <select name='periode'  {...register('periode')}>
-                                {dataCollection2.map(
-                                    (item)=> <option key={item.id} value={item.id}>{item.title}</option>
-                                )}
-                            </select>
-                            
-                        </div>
-                        <div>
-                            <select name='dynamique'  {...register('dynamique')}> 
-                                {
-                                    collection.map(
-                                        (item)=> <option key={item.value} value={item.value}>{item.label}</option>
-                                    )     
-                                }
-                            </select>
-                        </div>
-                        <div>
-                            <input type="datetime-local" name="begindate" {...register('begindate')}/>
-                            <input type="datetime-local" name="dateend" {...register('dateend')}/>
-                        </div>
-                        <div style={styleDiv}>
-                                <Progressbarre bgcolor="#99ccff" progress='30'  height={20}/>
-                                <Progressbarre bgcolor="#99ccff" progress='40'  height={20}/>
+                            <div >
+                                <h2>Parametre</h2>
                             </div>
-                        <button>Submit</button>
-                    </form>
-                </div>
+                          
+                                <form onSubmit={handleSubmit(handleRegistration)} >
+                                    <div style={styleDiv}>
+                                        <Select options={dataCollection} 
+                                            placeholder="Selectionner la geographie" 
+                                            onChange={listedynamique}
+                                            />
+                                        <select name='periode'  {...register('periode')}>
+                                            {dataCollection2.map(
+                                                (item)=> <option key={item.id} value={item.id}>{item.title}</option>
+                                            )}
+                                        </select>
+                                        
+                                    </div>
+                                    <div>
+                                        <select name='dynamique'  {...register('dynamique')}> 
+                                            {
+                                                collection.map(
+                                                    (item)=> <option key={item.value} value={item.value}>{item.label}</option>
+                                                )     
+                                            }
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <input type="datetime-local" name="begindate" {...register('begindate')}/>
+                                        <input type="datetime-local" name="dateend" {...register('dateend')}/>
+                                    </div>
+                                    <div style={styleDiv}>
+                                            <Progressbarre 
+                                                bgcolor="#99ccff" 
+                                                progress='30'  
+                                                height={20}
+                                                message="text a afficher"
+                                            />
+                                            <Progressbarre 
+                                                bgcolor="#99ccff" 
+                                                progress='40'  
+                                                height={20}
+                                                message="text a afficher"
+                                            />
+                                        </div>
+                                    <button>Submit</button>
+                                </form>
+                           
+                        </div>
 
     const Template2 = <div style={styleSetting}>
                         <div>
@@ -215,20 +228,26 @@ const Setting = () => {
                                 <input type="datetime-local" name="dateend" {...register('dateend')}/>
                             </div>
                             <div style={styleDiv}>
-                                <Progressbarre bgcolor="#99ccff" progress='30'  height={20} />
-                                <Progressbarre bgcolor="#99ccff" progress='40'  height={20}/>
+                                <Progressbarre 
+                                    bgcolor="#99ccff" 
+                                    progress='30'  
+                                    height={20} 
+                                    message="text a afficher"
+                                />
+                                <Progressbarre 
+                                    bgcolor="#99ccff" 
+                                    progress='40'  
+                                    height={20}
+                                    message="text a afficher"
+                                />
                             </div>
                             <button>Submit</button>
                         </form>
                         </div>
     if(collection.length != 0)
-        return (
-            Template1
-        );
+        return (Template1);
     else
-        return(
-            Template2
-        )
+        return(Template2);
 };
 
 export default Setting;

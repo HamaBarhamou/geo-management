@@ -6,7 +6,7 @@
 /*   By: Barhamou <hamabarhamou@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 21:31:36 by Barhamou          #+#    #+#             */
-/*   Updated: 2022/05/22 00:17:04 by Barhamou         ###   ########.fr       */
+/*   Updated: 2022/05/23 00:08:37 by Barhamou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ const styleGlobale={
     //background:'#C0C0C0',
     background:'#f8f9fd',
     margin: '1%',
-    left: '1%'
+    left: '1%',
+    width: '98%',
 }
   
 const Home = () => {
