@@ -6,7 +6,7 @@
 /*   By: Barhamou <hamabarhamou@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 10:52:44 by Barhamou          #+#    #+#             */
-/*   Updated: 2022/05/24 14:53:15 by Barhamou         ###   ########.fr       */
+/*   Updated: 2022/05/24 21:50:48 by Barhamou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,13 @@ const styles_Select = {
       ...provided,
       borderBottom: '1px dotted pink',
       color: state.isSelected ? 'red' : 'blue',
-      padding: 10,
+      //padding: 10,
     }),
     control: () => ({
       // none of react-select's styles are passed to <Control />
       width: 600,
-      //background:'red',
+      background:'white',
+      margin: 10
     }),
     singleValue: (provided, state) => {
       const opacity = state.isDisabled ? 0.5 : 1;
@@ -178,7 +179,7 @@ const Setting = () => {
                                             onChange={listedynamique}
                                             styles={styles_Select}
                                             />
-                                        <select name='periode'  {...register('periode')} style={{width:'100%',padding:10}}>
+                                        <select name='periode'  {...register('periode')} style={{width:'100%',margin:10,}}>
                                             {dataCollection2.map(
                                                 (item)=> <option key={item.id} value={item.id}>{item.title}</option>
                                             )}
@@ -199,7 +200,7 @@ const Setting = () => {
                                             }
                                         </select>
                                     </div>
-                                    <div style={{width:'100%',margin:10}}>
+                                    <div style={{width:'100%',padding:10}}>
                                         <input type="datetime-local" 
                                             name="begindate" {...register('begindate')} 
                                             style={{width:'50%'}}
@@ -242,7 +243,7 @@ const Setting = () => {
                                     onChange={listedynamique}
                                     styles={styles_Select}
                                     />
-                                <select name='periode'  {...register('periode')} style={{width:'100%',padding:10}}>
+                                <select name='periode'  {...register('periode')} style={{width:'100%',margin:10}}>
                                     {dataCollection2.map(
                                         (item)=> <option key={item.id} value={item.id}>{item.title}</option>
                                     )}

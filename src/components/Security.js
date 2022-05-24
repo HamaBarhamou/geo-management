@@ -7,20 +7,14 @@ import Excesvitesse from './Excesvitesse';
 const container2 ={
     display: 'flex',
     margin: 30,
-    background: '#99ccff'
-}
-
-const styleSecurity={
-    //height: 'height',
-    //width: '100%',
-    //background: 'blue'
+    //background: '#99ccff'
 }
 
 const Security = () => {
     return (
-        <div style={styleSecurity}>
+        <div style={{width:'100%'}}>
             <h2>Security</h2>
-            <div style={container2} /*className="graphe1"*/>
+            <div style={container2}>
                 <Deplacementnonautoriser/>
                 <Excesvitesse/>
             </div>

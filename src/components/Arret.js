@@ -41,7 +41,7 @@ import { Bar } from 'react-chartjs-2';
 
 const Arret = () => {
     return (
-        <div>
+        <div style={{background:'white',width:'50%',margin:10}}>
             <Bar options={options} data= {data}/>
         </div>
     );

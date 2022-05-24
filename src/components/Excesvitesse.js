@@ -57,7 +57,7 @@ export const data = {
 
 const Excesvitesse = () => {
     return (
-        <div>
+        <div style={{background:'white',width:'50%',margin:10}}>
             <Line options={options} data={data} />
         </div>
     );

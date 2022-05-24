@@ -5,10 +5,8 @@ import Kilometrage from './Kilometrage';
 import Retourprecosse from './Retourprecosse';
 
 const container2 ={
-    /*display: 'flex',*/
-    /*height: '100px',
-    whdth: '50%'*/
-    display: 'flex'
+    display: 'flex',
+    margin: 30,
 }
 
 const stylePerformance={
@@ -17,7 +15,7 @@ const stylePerformance={
 
 const Performance = () => {
     return (
-        <div style={stylePerformance}>
+        <div style={{width:'100%'}}>
             <h2>Performance</h2>
             <div style={container2}>
                 <Kilometrage/>
