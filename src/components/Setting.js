@@ -6,7 +6,7 @@
 /*   By: Barhamou <hamabarhamou@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 10:52:44 by Barhamou          #+#    #+#             */
-/*   Updated: 2022/05/23 16:12:54 by Barhamou         ###   ########.fr       */
+/*   Updated: 2022/05/24 14:53:15 by Barhamou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ import Select from 'react-select'
 import Progressbarre from './Progressbarre';
 
 const styleSetting={
-    //background: '#A9A9A9',
-    background: 'white',
+    background: '#A9A9A9',
+    //background: 'white',
     //height: 'height',
-    width: '100%',
+    width: '98%',
     margin: 10
 }
 
@@ -28,12 +28,25 @@ const styleDiv={
     margin: 20
 }
 
-
-const options = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' }
-]
+const styles_Select = {
+    option: (provided, state) => ({
+      ...provided,
+      borderBottom: '1px dotted pink',
+      color: state.isSelected ? 'red' : 'blue',
+      padding: 10,
+    }),
+    control: () => ({
+      // none of react-select's styles are passed to <Control />
+      width: 600,
+      //background:'red',
+    }),
+    singleValue: (provided, state) => {
+      const opacity = state.isDisabled ? 0.5 : 1;
+      const transition = 'opacity 300ms'
+      
+      return { ...provided, opacity, transition };
+    }
+  }
 
 const dataCollection = [
     {
@@ -154,17 +167,18 @@ const Setting = () => {
         
     };
     const Template1 = <div style={styleSetting}>
-                            <div >
+                            <div style={{color: 'white',fontWeight: 900}}>
                                 <h2>Parametre</h2>
                             </div>
                           
-                                <form onSubmit={handleSubmit(handleRegistration)} >
-                                    <div style={styleDiv}>
+                                <form onSubmit={handleSubmit(handleRegistration)} style={{width: '98%'}}>
+                                    <div style={{display:'flex',margin:20,width:'100%'}}>
                                         <Select options={dataCollection} 
                                             placeholder="Selectionner la geographie" 
                                             onChange={listedynamique}
+                                            styles={styles_Select}
                                             />
-                                        <select name='periode'  {...register('periode')}>
+                                        <select name='periode'  {...register('periode')} style={{width:'100%',padding:10}}>
                                             {dataCollection2.map(
                                                 (item)=> <option key={item.id} value={item.id}>{item.title}</option>
                                             )}
@@ -172,7 +186,12 @@ const Setting = () => {
                                         
                                     </div>
                                     <div>
-                                        <select name='dynamique'  {...register('dynamique')}> 
+                                        <select name='dynamique'  
+                                                {...register('dynamique')} 
+                                                style={{width:'100%',
+                                                padding:10,
+                                                margin:10}}
+                                        > 
                                             {
                                                 collection.map(
                                                     (item)=> <option key={item.value} value={item.value}>{item.label}</option>
@@ -180,9 +199,16 @@ const Setting = () => {
                                             }
                                         </select>
                                     </div>
-                                    <div>
-                                        <input type="datetime-local" name="begindate" {...register('begindate')}/>
-                                        <input type="datetime-local" name="dateend" {...register('dateend')}/>
+                                    <div style={{width:'100%',margin:10}}>
+                                        <input type="datetime-local" 
+                                            name="begindate" {...register('begindate')} 
+                                            style={{width:'50%'}}
+                                        />
+                                        
+                                        <input type="datetime-local" 
+                                            name="dateend" {...register('dateend')} 
+                                            style={{width:'50%'}}
+                                        />
                                     </div>
                                     <div style={styleDiv}>
                                             <Progressbarre 
@@ -206,28 +232,34 @@ const Setting = () => {
                         </div>
 
     const Template2 = <div style={styleSetting}>
-                        <div>
+                        <div style={{color: 'white',fontWeight: 900}}>
                             <h2>Parametre</h2>
                         </div>
-                        <form onSubmit={handleSubmit(handleRegistration)}>
-                            <div style={styleDiv}>
+                        <form onSubmit={handleSubmit(handleRegistration)} style={{width: '98%'}}>
+                            <div style={{display:'flex',margin:20,width:'100%'}}>
                                 <Select options={dataCollection} 
                                     placeholder="Selectionner la geographie" 
                                     onChange={listedynamique}
+                                    styles={styles_Select}
                                     />
-                                <select name='periode'  {...register('periode')}>
+                                <select name='periode'  {...register('periode')} style={{width:'100%',padding:10}}>
                                     {dataCollection2.map(
                                         (item)=> <option key={item.id} value={item.id}>{item.title}</option>
                                     )}
                                 </select>
                                 
                             </div>
-                            <div>
-                               
-                            </div>
-                            <div>
-                                <input type="datetime-local" name="begindate" {...register('begindate')}/>
-                                <input type="datetime-local" name="dateend" {...register('dateend')}/>
+                
+                            <div style={{width:'100%',margin:10}}>
+                                <input type="datetime-local" 
+                                    name="begindate" {...register('begindate')} 
+                                    style={{width:'50%'}}
+                                />
+
+                                <input type="datetime-local" 
+                                    name="dateend" {...register('dateend')} 
+                                    style={{width:'50%'}}
+                                />
                             </div>
                             <div style={styleDiv}>
                                 <Progressbarre 
