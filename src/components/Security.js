@@ -13,7 +13,7 @@ const container2 ={
 const Security = () => {
     return (
         <div style={{width:'100%'}}>
-            <h2>Security</h2>
+            <center><h2>Security</h2></center>
             <div style={container2}>
                 <Deplacementnonautoriser/>
                 <Excesvitesse/>

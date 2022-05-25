@@ -16,7 +16,7 @@ const stylePerformance={
 const Performance = () => {
     return (
         <div style={{width:'100%'}}>
-            <h2>Performance</h2>
+            <center><h2>Performance</h2></center>
             <div style={container2}>
                 <Kilometrage/>
                 <Arret/>
