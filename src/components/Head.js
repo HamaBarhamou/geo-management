@@ -6,7 +6,7 @@
 /*   By: Barhamou <hamabarhamou@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 10:52:55 by Barhamou          #+#    #+#             */
-/*   Updated: 2022/05/18 12:58:33 by Barhamou         ###   ########.fr       */
+/*   Updated: 2022/05/26 16:09:48 by Barhamou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ const HeadStyle={
     height: '60px',
     display: 'flex',
     /*background: 'green',*/
-    marginLeft: '30%', 
+    //marginLeft: '30%', 
 }
 
 const styleT={
@@ -33,15 +33,21 @@ const styleT={
 
 const Head = () => {
     return (
-        <div style={HeadStyle}>
-            <img src={valider} style={styleT}/>
-            <img src={message} style={styleT}/>
-            <img src={email} style={styleT}/>
-            <img src={etoile} style={styleT}/>
-            <img src={logo} /> 
-            <img src={pays} style={styleT}/>
-            <img src={recherche} style={styleT}/>
-            <img src={profile} style={styleT}/>
+        <div style={{display:'flex',padding:10,justifyContent:'space-between'}}>
+            <div>
+                <img src={valider} style={styleT}/>
+                <img src={message} style={styleT}/>
+                <img src={email} style={styleT}/>
+                <img src={etoile} style={styleT}/>
+            </div>
+            <div >
+                <img src={logo} style={{height:'60px'}}/> 
+            </div>
+            <div>
+                <img src={pays} style={styleT}/>
+                <img src={recherche} style={styleT}/>
+                <img src={profile} style={styleT}/>
+            </div>
         </div>
     );
 };
