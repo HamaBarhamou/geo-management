@@ -35,7 +35,7 @@ const Onglet = () => {
                 </div>
                 <div>
                     <img src={geomax} style={styleT}/> 
-                    <Link to="/home" style={linkStyle}>Geomax</Link>               
+                    <Link to="/home" style={linkStyle}>Whatsgps</Link>               
                 </div>
                 <div>
                     <img src={parametrage} style={styleT}/> 

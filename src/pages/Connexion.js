@@ -6,15 +6,19 @@
 /*   By: Barhamou <hamabarhamou@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 21:30:49 by Barhamou          #+#    #+#             */
-/*   Updated: 2022/05/16 22:35:18 by Barhamou         ###   ########.fr       */
+/*   Updated: 2022/05/27 00:28:10 by Barhamou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import { Navigate } from 'react-router-dom';
 import '../styles/App.scss';
+import { UserContext } from "../App";
 
 const Connexion = () => {
+    const {userdata,updateData} = useContext(UserContext)
+    
+    
     const [errorMessages, setErrorMessages] = useState({});
     const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -35,6 +39,8 @@ const Connexion = () => {
       };
 
       const handleSubmit = (event) => {
+        //updateData({"hello":"world"})
+        //console.log("user: ",userdata)
         //Prevent page reload
         event.preventDefault();
     
