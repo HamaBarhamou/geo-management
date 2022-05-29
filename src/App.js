@@ -6,7 +6,7 @@
 /*   By: Barhamou <hamabarhamou@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 20:07:57 by Barhamou          #+#    #+#             */
-/*   Updated: 2022/05/26 23:39:41 by Barhamou         ###   ########.fr       */
+/*   Updated: 2022/05/27 22:03:21 by Barhamou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ import About from "./pages/About";
 import Connexion from "./pages/Connexion";
 import Home from "./pages/Home";
 import {useState,createContext} from 'react';
-import { ReactDOM } from "react";
+
 
 export const UserContext = createContext();
 
@@ -29,7 +29,7 @@ function App() {
   }
 
   return (
-    <UserContext.Provider value={{userdata,updateData}}>
+    <UserContext.Provider value={{userdata,updateData}}>   
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Connexion/>} />

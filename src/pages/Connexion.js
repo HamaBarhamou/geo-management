@@ -6,22 +6,46 @@
 /*   By: Barhamou <hamabarhamou@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 21:30:49 by Barhamou          #+#    #+#             */
-/*   Updated: 2022/05/27 00:28:10 by Barhamou         ###   ########.fr       */
+/*   Updated: 2022/05/29 12:11:33 by Barhamou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-import React, { useState,useContext } from "react";
+import React, { useState,useContext,useEffect } from "react";
 import { Navigate } from 'react-router-dom';
 import '../styles/App.scss';
 import { UserContext } from "../App";
+import {useQuery} from 'react-query';
+
+
+const fetchUserdata = async () => {
+  const res = await fetch(
+    //"https://reqres.in/api/users",
+    "https://sheltered-depths-77817.herokuapp.com/https://www.whatsgps.com/user/login.do?name=MABUCIGSA&password=a123456",
+    /*{
+      //mode:'no-cors',
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    }*/
+    )
+  return res.json()
+}
+
 
 const Connexion = () => {
     const {userdata,updateData} = useContext(UserContext)
+
+
+    const {status,data,error} = useQuery("user",fetchUserdata)
+    console.log("status:",status," data:",data," error:",error)
+
+    //const {status,data,error} = useQuery("users",fetchUserdata)
+    //console.log("status:",status," data:",data, "error:",error)
     
     
     const [errorMessages, setErrorMessages] = useState({});
     const [isSubmitted, setIsSubmitted] = useState(false);
-
+    
     const database = [
         {
           username: "GPSDEMO",
@@ -38,17 +62,20 @@ const Connexion = () => {
         pass: "invalid password"
       };
 
+
+      
       const handleSubmit = (event) => {
-        //updateData({"hello":"world"})
-        //console.log("user: ",userdata)
-        //Prevent page reload
+
+        
+    
         event.preventDefault();
-    
+        
         var { uname, pass } = document.forms[0];
-    
-        // Find user login info
+        
         const userData = database.find((user) => user.username === uname.value);
     
+        
+        
         // Compare user info
         if (userData) {
           if (userData.password !== pass.value) {
