@@ -6,13 +6,14 @@
 /*   By: Barhamou <hamabarhamou@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 10:52:44 by Barhamou          #+#    #+#             */
-/*   Updated: 2022/05/26 00:06:56 by Barhamou         ###   ########.fr       */
+/*   Updated: 2022/06/01 20:06:15 by Barhamou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-import React, { useState, Component } from 'react';
+import React, { useState, Component, useContext } from 'react';
 import { useForm } from "react-hook-form";
 import Select from 'react-select'
+import { UserContext } from '../App';
 import Progressbarre from './Progressbarre';
 
 const styleSetting={
@@ -111,6 +112,10 @@ const dataCollection = [
 //let collection = dataCollection[0].collection;
 
 const Setting = () => {
+
+    const {userdata,datasetting,updatedatasetting} = useContext(UserContext)
+
+    console.log("userdata: ",userdata)
     
     const dataCollection2 = [
         {
@@ -138,11 +143,8 @@ const Setting = () => {
     
     const { register, handleSubmit } = useForm();
     const handleRegistration = (data) => {
-        console.log(data);
-        /*console.log(dataCollection1[0].collection)
-        dataCollection1.id.collection.map(
-            (item) =>{console.log(item.title)}
-        )*/
+        updatedatasetting(data)
+        console.log("datasetting:",datasetting);
     };
 
     function getIdCollection(data, id)

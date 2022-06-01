@@ -6,7 +6,7 @@
 /*   By: Barhamou <hamabarhamou@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 21:30:49 by Barhamou          #+#    #+#             */
-/*   Updated: 2022/06/01 15:46:25 by Barhamou         ###   ########.fr       */
+/*   Updated: 2022/06/01 19:13:22 by Barhamou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,11 @@ const Connexion = () => {
       fetch(url)
         .then((resp)=>resp.json())
         .then((data)=>{
+          updateData(data.data)
           console.log(data.data.token)
           // charger les donné dans la store globale
           setIsLoaded(true)
+          setRet(data.ret)
           
         })
         .then((error)=>{
@@ -57,11 +59,15 @@ const Connexion = () => {
       // Compare user info
       if (isLoaded) {
         setIsSubmitted(true)
-      } else {
-        // Username not found
-        setErrorMessages({ name: "uname", message: errors.uname });
-        setErrorMessages({ name: "pass", message: errors.pass });
-      }
+        if(ret == 0)
+        {
+          // Username not found
+          setErrorMessages({ name: "uname", message: errors.uname });
+          setErrorMessages({ name: "pass", message: errors.pass });
+        }
+      } /*else {
+          setErrorMessages({ name: "uname", message: errors.uname });
+      }*/
     };
   
   // Generate JSX code for error message
@@ -98,7 +104,7 @@ const Connexion = () => {
         <div className="title">Sign In</div>
             {isLoaded ?  <Navigate to="/home"  />:renderForm}
       </div>
-      <h1>{isLoaded}</h1>
+      <h1>{ret}</h1>
     </div>
   );
 };
