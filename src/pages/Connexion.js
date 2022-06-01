@@ -6,7 +6,7 @@
 /*   By: Barhamou <hamabarhamou@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 21:30:49 by Barhamou          #+#    #+#             */
-/*   Updated: 2022/06/01 12:45:27 by Barhamou         ###   ########.fr       */
+/*   Updated: 2022/06/01 15:46:25 by Barhamou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,16 @@ import React, { useState,useContext,useEffect } from "react";
 import { Navigate } from 'react-router-dom';
 import '../styles/App.scss';
 import { UserContext } from "../App";
-import {useQuery} from 'react-query';
-import { data } from "../components/Comportementconduite";
-
 
 
 const Connexion = () => {
     
     const {userdata,updateData,proxy} = useContext(UserContext)
-    const [login,setLogin] = useState("");
-    const [password,setPassword] =  useState("");
-    
     const [errorMessages, setErrorMessages] = useState({});
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [ret,setRet] = useState(0)
+    const [error, setError] = useState(null);
+    const [isLoaded, setIsLoaded] = useState(false);
 
     const errors = {
       uname:"invalid username or password",
@@ -49,17 +45,17 @@ const Connexion = () => {
         .then((data)=>{
           console.log(data.data.token)
           // charger les donné dans la store globale
-          setRet(data.ret)
+          setIsLoaded(true)
           
         })
         .then((error)=>{
-          console.log("Error:",error)
+          setError(error)
         });
 
       
       
       // Compare user info
-      if (ret == 1) {
+      if (isLoaded) {
         setIsSubmitted(true)
       } else {
         // Username not found
@@ -100,8 +96,9 @@ const Connexion = () => {
     <div className="app">
       <div className="login-form">
         <div className="title">Sign In</div>
-            {isSubmitted ?  <Navigate to="/home"  />: renderForm}
+            {isLoaded ?  <Navigate to="/home"  />:renderForm}
       </div>
+      <h1>{isLoaded}</h1>
     </div>
   );
 };
