@@ -6,7 +6,7 @@
 /*   By: Barhamou <hamabarhamou@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 20:07:57 by Barhamou          #+#    #+#             */
-/*   Updated: 2022/05/27 22:03:21 by Barhamou         ###   ########.fr       */
+/*   Updated: 2022/05/29 15:42:06 by Barhamou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,14 @@ export const UserContext = createContext();
 function App() {
 
   const [userdata,setUserdata] = useState({"user":"user data of initiale"})
+  const proxy = "https://sheltered-depths-77817.herokuapp.com/"
 
   const updateData = (data) =>{
     setUserdata(data)
   }
 
   return (
-    <UserContext.Provider value={{userdata,updateData}}>   
+    <UserContext.Provider value={{userdata,updateData,proxy}}>   
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Connexion/>} />
