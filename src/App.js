@@ -6,7 +6,7 @@
 /*   By: Barhamou <hamabarhamou@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 20:07:57 by Barhamou          #+#    #+#             */
-/*   Updated: 2022/06/01 20:02:38 by Barhamou         ###   ########.fr       */
+/*   Updated: 2022/06/06 14:02:52 by Barhamou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@ import About from "./pages/About";
 import Connexion from "./pages/Connexion";
 import Home from "./pages/Home";
 import {useState,createContext} from 'react';
+import Rapports from "./pages/Rapports";
+import Clients from "./pages/Clients";
+import Parametrage from "./pages/Parametrage";
 
 
 export const UserContext = createContext();
@@ -42,6 +45,9 @@ function App() {
           <Route path= "/about" element={<About />} />
           <Route path= "/home" element={<Home />} /> 
           <Route path= "/trackergps_fontend" element={<Connexion />} /> 
+          <Route path= "/rapport" element={<Rapports/>} />
+          <Route path= "/clients" element={<Clients/>} />
+          <Route path= "/parametrage" element={<Parametrage/>} />
         </Routes>
       </BrowserRouter>
     </UserContext.Provider>

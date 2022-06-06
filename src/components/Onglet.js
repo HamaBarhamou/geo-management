@@ -23,7 +23,7 @@ const Onglet = () => {
             <nav style={{display:'flex'}}>
                 <div> 
                     <img src={rapport} style={styleT}/>
-                    <Link to="/home" style={linkStyle}>Rapport</Link>  
+                    <Link to="/rapport" style={linkStyle}>Rapport</Link>  
                 </div>
                 <div> 
                     <img src={charts} style={styleT}/>
@@ -31,15 +31,17 @@ const Onglet = () => {
                 </div>
                 <div> 
                     <img src={clients} style={styleT}/>
-                    <Link to="/home" style={linkStyle}>Clients</Link>              
+                    <Link to="/clients" style={linkStyle}>Clients</Link>              
                 </div>
                 <div>
                     <img src={geomax} style={styleT}/> 
-                    <Link to="/home" style={linkStyle}>Whatsgps</Link>               
+                    
+                    <a target="_blank" href="https://www.whatsgps.com/rebuild/dist/index.html?t=1654521067909#/monitor/index">Whatsgps</a>
+                    
                 </div>
                 <div>
                     <img src={parametrage} style={styleT}/> 
-                    <Link to="/home" style={linkStyle}>Parametrage</Link>       
+                    <Link to="/parametrage" style={linkStyle}>Parametrage</Link>       
                 </div>
             </nav>
         </div>

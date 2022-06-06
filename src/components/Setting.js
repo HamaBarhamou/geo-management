@@ -6,7 +6,7 @@
 /*   By: Barhamou <hamabarhamou@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 10:52:44 by Barhamou          #+#    #+#             */
-/*   Updated: 2022/06/01 20:06:15 by Barhamou         ###   ########.fr       */
+/*   Updated: 2022/06/04 21:19:08 by Barhamou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ const dataCollection = [
 
 const Setting = () => {
 
-    const {userdata,datasetting,updatedatasetting} = useContext(UserContext)
+    const {userdata,datasetting,updatedatasetting, proxy} = useContext(UserContext)
 
     console.log("userdata: ",userdata)
     
@@ -145,6 +145,14 @@ const Setting = () => {
     const handleRegistration = (data) => {
         updatedatasetting(data)
         console.log("datasetting:",datasetting);
+        // interrogation api
+        const url = proxy + "https://www.whatsgps.com/position/queryHistory.do?carId=455664&mapType=1&startTime="+datasetting.begindate+"&endTime="+datasetting.dateend+"&filter=false&token="+userdata.token
+        fetch(url)
+        .then((resp)=>resp.json())
+        .then((data)=>{
+            console.log("getiii:",data)
+        })
+        .then((error)=>{console.log("get error:",error)})
     };
 
     function getIdCollection(data, id)
