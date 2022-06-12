@@ -6,7 +6,7 @@
 /*   By: Barhamou <hamabarhamou@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 10:52:44 by Barhamou          #+#    #+#             */
-/*   Updated: 2022/06/04 21:19:08 by Barhamou         ###   ########.fr       */
+/*   Updated: 2022/06/12 13:33:44 by Barhamou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ import Progressbarre from './Progressbarre';
 
 const styleSetting={
     background: '#A9A9A9',
-    //background: 'white',
-    //height: 'height',
     width: '98%',
     margin: 10
 }
@@ -146,7 +144,7 @@ const Setting = () => {
         updatedatasetting(data)
         console.log("datasetting:",datasetting);
         // interrogation api
-        const url = proxy + "https://www.whatsgps.com/position/queryHistory.do?carId=455664&mapType=1&startTime="+datasetting.begindate+"&endTime="+datasetting.dateend+"&filter=false&token="+userdata.token
+        const url = proxy + "https://www.whatsgps.com/alarmSta/queryDetail.do?carId=866199&alarmTypes=5&userId=25096&token=d4aa0523-8ed7-457f-a282-2d1cd075a03e&startTime=2022-06-01 09:07:21.20&endTime=2022-06-10 09:07:21.20&pageNo=10"
         fetch(url)
         .then((resp)=>resp.json())
         .then((data)=>{

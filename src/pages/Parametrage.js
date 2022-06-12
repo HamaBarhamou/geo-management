@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, Component, useContext } from 'react';
 import Head from '../components/Head';
 import Onglet from '../components/Onglet';
 
@@ -13,7 +13,9 @@ const styleGlobale={
 }
 
 
+
 const Parametrage = () => {
+
     return (
         <div style={styleGlobale}>
             <Head/>

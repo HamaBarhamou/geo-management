@@ -6,7 +6,7 @@
 /*   By: Barhamou <hamabarhamou@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 21:30:49 by Barhamou          #+#    #+#             */
-/*   Updated: 2022/06/01 19:13:22 by Barhamou         ###   ########.fr       */
+/*   Updated: 2022/06/10 18:30:28 by Barhamou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ const Connexion = () => {
       console.log("login: ",uname.value," pass: ",pass.value)
 
       // interoger l'api avec fech
-      const url = proxy+"https://www.whatsgps.com/user/login.do?name="+uname.value+"&password="+pass.value
+      const url = proxy+"https://www.whatsgps.com/user/login.do?name="+uname.value+"&password="+pass.value+"&lang=fr"
       fetch(url)
         .then((resp)=>resp.json())
         .then((data)=>{

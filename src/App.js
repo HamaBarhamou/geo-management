@@ -6,7 +6,7 @@
 /*   By: Barhamou <hamabarhamou@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 20:07:57 by Barhamou          #+#    #+#             */
-/*   Updated: 2022/06/06 14:02:52 by Barhamou         ###   ########.fr       */
+/*   Updated: 2022/06/11 23:38:05 by Barhamou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,41 @@ function App() {
   const [datasetting,setDatasetting] = useState({})
   const proxy = "https://sheltered-depths-77817.herokuapp.com/"
 
+  const alarmType = {
+    1: "Vibration alarm",
+    2: "Power off alarm",
+    3: "Low power alarm",
+    4: "SOS SOS",
+    5: "Speeding alarm",
+    6: "Fence alarm (platform determination)",
+    7: "Displacement alarm",
+    8: "Low power alarm",
+    9: "Out area alarm (terminal)",
+    10: "Detach alarm",
+    11: "Light alarm",
+    12: "Magnetic induction alarm",
+    13: "Anti-desassembly alarm",
+    14: "Bluetooth alarm",
+    15: "Signal Shield Alarm",
+    16: "False base stattion alarm",
+    17: "Shortlist alarm (platform judgment)",
+    18: "Shortlist alarm (terminal determination)",
+    19: "Fence alarm (terminal determination)",
+    20: "Door open alarm",
+    21: "Fatigue driving",
+    22: "Alarm at 2",
+    23: "Out of two alarm",
+    24: "Timeout Warning for two Charge",
+    25: "Terminal off-line alarm",
+    26: "Shortlisted Alert (Wind Control)",
+    27: "Fence alarm (Wind Control)",
+    28: "Electronic fence alarm (platform, terminal and wind control)",
+    29: "Out of the elecronique fence alarm (platform, terminal and wind control)",
+    30: "Oil alert",
+    31: "ACC alarm",
+    32: "ACC off alarm"
+  }
+
   const updateData = (data) =>{
     setUserdata(data)
   }
@@ -38,7 +73,7 @@ function App() {
   }
 
   return (
-    <UserContext.Provider value={{userdata,updateData,proxy,datasetting,updatedatasetting}}>   
+    <UserContext.Provider value={{userdata,updateData,proxy,datasetting,updatedatasetting,alarmType}}>   
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Connexion/>} />
