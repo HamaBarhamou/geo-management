@@ -7,6 +7,7 @@ import { UserContext } from '../App';
 import Head from '../components/Head';
 import Onglet from '../components/Onglet';
 import Security from '../components/Security';
+import Supportrapport from '../Rapports/Supportrapport';
 
 const styleGlobale={
     margin: '10px',
@@ -185,16 +186,15 @@ const Rapports = () => {
             
             </div>
         </div>
-                <div ref ={printRef}>
-                    <h1>ICI le rapprot a generer en pdf</h1>
-                    <Security/>
-                </div>
+            <div ref ={printRef}>
+                <Supportrapport/>
+            </div>
 
-                <div>
-                    <button type='button' onClick={handleDownloadPdf}>
-                        Telecharger PDF
-                    </button>
-                </div>
+            <div>
+                <button type='button' onClick={handleDownloadPdf}>
+                    Telecharger PDF
+                </button>
+            </div>
         </div>
     )
 
