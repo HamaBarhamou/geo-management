@@ -1,11 +1,12 @@
 import React, { useState, Component, useContext } from 'react';
-//import ReactDOM from 'react-dom';
-//import { PDFViewer } from '@react-pdf/renderer';
+import html2canvas from 'html2canvas';
+import { jsPDF } from 'jspdf';
 import { useForm } from "react-hook-form";
 import Select from 'react-select'
 import { UserContext } from '../App';
 import Head from '../components/Head';
 import Onglet from '../components/Onglet';
+import Security from '../components/Security';
 
 const styleGlobale={
     margin: '10px',
@@ -31,9 +32,27 @@ const Rapports = () => {
     const { register, handleSubmit } = useForm();
     const [pdf, setPdf] = useState(false)
     
-    const handleDownloadPdf = () => {
+    const handleDownloadPdf = async() => {
         // TODO: logic
+        const element = printRef.current;
+        const canvas = await html2canvas(element);
+        const data = canvas.toDataURL('image/png');
+
+        const pdf = new jsPDF();
+        const imgProperties = pdf.getImageProperties(data);
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight =
+        (imgProperties.height * pdfWidth) / imgProperties.width;
+
+        pdf.addImage(data, 'PNG', 0, 0, pdfWidth, pdfHeight);
+        pdf.save('Rapport.pdf');
         console.log("pdf telecharger")
+        
+        if(pdf)
+            setPdf(false)
+        else
+            setPdf(true)
+
     };
     const handleRegistration = (data)=>{
         //console.log(userdata);
@@ -166,9 +185,11 @@ const Rapports = () => {
             
             </div>
         </div>
-                <div>
+                <div ref ={printRef}>
                     <h1>ICI le rapprot a generer en pdf</h1>
+                    <Security/>
                 </div>
+
                 <div>
                     <button type='button' onClick={handleDownloadPdf}>
                         Telecharger PDF
@@ -177,7 +198,7 @@ const Rapports = () => {
         </div>
     )
 
-    if (pdf)
+    if (!pdf)
     return (template1);
     else
        return(template2)
