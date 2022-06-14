@@ -8,6 +8,8 @@ import Head from '../components/Head';
 import Onglet from '../components/Onglet';
 import Security from '../components/Security';
 import Supportrapport from '../Rapports/Supportrapport';
+import Loading from '../components/Loading';
+import { data } from '../components/Comportementconduite';
 
 const styleGlobale={
     margin: '10px',
@@ -32,6 +34,8 @@ const Rapports = () => {
     const {userdata, alarmType, proxy} = useContext(UserContext)
     const { register, handleSubmit } = useForm();
     const [pdf, setPdf] = useState(false)
+    const [loading, setLoading] = useState(false)
+    const [buttonmesage, setButtonmessage] = useState("Generer Rapports")
     
     const handleDownloadPdf = async() => {
         // TODO: logic
@@ -58,11 +62,15 @@ const Rapports = () => {
     const handleRegistration = (data)=>{
         //console.log(userdata);
         // introgation de l'api
-        if(pdf)
+        if (data.select == "")
+        {
             setPdf(false)
-        else
-            setPdf(true)
+            setLoading(false)
+            return;
+        }
 
+        
+        setLoading(true)
         let url = proxy
         if (data.select === "General")
         {
@@ -71,6 +79,13 @@ const Rapports = () => {
             .then((resp)=>resp.json())
             .then((data)=>{
                 console.log("rapport general:",data)
+
+                if(pdf)
+                    setPdf(false)
+                else
+                    setPdf(true)
+                setLoading(false)
+                //setButtonmessage("Close Rapport")
             })
             .then((error)=>console.log("rapport general error:",error))
         }
@@ -138,13 +153,55 @@ const Rapports = () => {
                    
                 </div>
                 <div>
-                    <button>Generer Rapports</button>
+                    <button>{buttonmesage}</button>
                 </div>
             </form>
             
         </div>
     </div>
     )
+
+    const template3 = ( 
+        <div> 
+            <div style={styleGlobale}>
+        <Head/>
+        <Onglet/>
+        <div style={styleSetting}>
+            <div style={{color: 'white',fontWeight: 900}}>
+                <h2>Rapports instantanés</h2>
+            </div>
+            <form onSubmit={handleSubmit(handleRegistration)} style={{width: '98%'}}>
+                <div style={{display:'flex',margin:20,width:'100%'}} >
+                    <select name="pets" {...register('select')}>
+                        <option value="">--Please choose an option--</option>
+                        <option value="General">Statistiques d'alarme</option>
+                        <option value="ConduiteTime">Temps de Conduite</option>
+                        <option value="Comportement_conducteur">Comportement du conducteur</option>
+                        <option value="Kilometrage">Kilometrage</option>
+                        <option value="Arret">Arret</option>
+                        <option value="DepartTardive">Depart tardive</option>
+                        <option value="Retour_precosse">Retour precosse</option>
+                    </select>
+
+                    <input type="datetime-local" 
+                        name="begindate" {...register('begindate')} 
+                    />
+                    
+                    <input type="datetime-local" 
+                        name="dateend" {...register('dateend')} 
+                    />
+                   
+                </div>
+                <div>
+                    <button>{buttonmesage}</button>
+                </div>
+            </form>
+            
+        </div>
+        </div >
+        <div style={{margin:50}}><Loading type={"spin"} color={"blue"}/></div>    
+        </div>
+    ) 
 
     const template2=(
         <div style={styleGlobale}>
@@ -178,7 +235,7 @@ const Rapports = () => {
                    
                 </div>
                 <div>
-                    <button>Generer Rapports</button>
+                    <button>{buttonmesage}</button>
                 </div>
 
                 
@@ -199,7 +256,11 @@ const Rapports = () => {
     )
 
     if (!pdf)
-    return (template1);
+        if (loading)
+            return(template3)
+        else{
+            return (template1);
+        }
     else
        return(template2)
 };
