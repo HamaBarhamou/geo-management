@@ -37,6 +37,7 @@ const Rapports = () => {
     const [loading, setLoading] = useState(false)
     const [buttonmesage, setButtonmessage] = useState("Generer Rapports")
     const [type, setType] = useState("General")
+    const [datarapport, setDatarapport] = useState({});
     
     const handleDownloadPdf = async() => {
         // TODO: logic
@@ -80,6 +81,7 @@ const Rapports = () => {
             fetch(url)
             .then((resp)=>resp.json())
             .then((data)=>{
+                setDatarapport(data)
                 console.log("rapport general:",data)
 
                 if(pdf)
@@ -127,6 +129,7 @@ const Rapports = () => {
             fetch(url)
             .then((resp)=>resp.json())
             .then((data)=>{
+                setDatarapport(data)
                 console.log("rapport general:",data)
 
                 if(pdf)
@@ -266,7 +269,7 @@ const Rapports = () => {
             </div>
         </div>
             <div ref ={printRef}>
-                <Supportrapport type={type}/>
+                <Supportrapport type={type} data={datarapport}/>
             </div>
 
             <div>

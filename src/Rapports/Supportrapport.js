@@ -15,7 +15,13 @@ const Supportrapport = (props) => {
     if (props.type == "General")
             return(
                 <div>
-                    <h1>General</h1>
+                    <h1>Rapport</h1>
+
+                    <ul>
+                        {props.data.data.map(todo=>
+                            <li>{todo.machineName}</li>
+                        )}
+                    </ul>
                     <Security/>
                     <Performance/>
                 </div>
