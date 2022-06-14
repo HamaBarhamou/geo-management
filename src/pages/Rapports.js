@@ -36,6 +36,7 @@ const Rapports = () => {
     const [pdf, setPdf] = useState(false)
     const [loading, setLoading] = useState(false)
     const [buttonmesage, setButtonmessage] = useState("Generer Rapports")
+    const [type, setType] = useState("General")
     
     const handleDownloadPdf = async() => {
         // TODO: logic
@@ -62,6 +63,7 @@ const Rapports = () => {
     const handleRegistration = (data)=>{
         //console.log(userdata);
         // introgation de l'api
+        setType(data.select)
         if (data.select == "")
         {
             setPdf(false)
@@ -85,7 +87,6 @@ const Rapports = () => {
                 else
                     setPdf(true)
                 setLoading(false)
-                //setButtonmessage("Close Rapport")
             })
             .then((error)=>console.log("rapport general error:",error))
         }
@@ -120,6 +121,24 @@ const Rapports = () => {
             console.log("Retour precosse")
         }
 
+        if (data.select === "exec_vitesse")
+        {
+            url = url + "https://www.whatsgps.com/alarmSta/queryGroupByCar.do?userId=25096&token=d4aa0523-8ed7-457f-a282-2d1cd075a03e&startTime=2022-06-01%2009:07:21.20&endTime=2022-06-10%2009:07:21.20"
+            fetch(url)
+            .then((resp)=>resp.json())
+            .then((data)=>{
+                console.log("rapport general:",data)
+
+                if(pdf)
+                    setPdf(false)
+                else
+                    setPdf(true)
+                setLoading(false)
+            })
+            .then((error)=>console.log("rapport general error:",error))
+            console.log("Execs de vitesse")
+        }
+        
     }
 
     const template1=(
@@ -141,6 +160,7 @@ const Rapports = () => {
                         <option value="Arret">Arret</option>
                         <option value="DepartTardive">Depart tardive</option>
                         <option value="Retour_precosse">Retour precosse</option>
+                        <option value="exec_vitesse">Exec de Vitesse</option>
                     </select>
 
                     <input type="datetime-local" 
@@ -181,6 +201,7 @@ const Rapports = () => {
                         <option value="Arret">Arret</option>
                         <option value="DepartTardive">Depart tardive</option>
                         <option value="Retour_precosse">Retour precosse</option>
+                        <option value="exec_vitesse">Exec de Vitesse</option>
                     </select>
 
                     <input type="datetime-local" 
@@ -223,6 +244,7 @@ const Rapports = () => {
                         <option value="Arret">Arret</option>
                         <option value="DepartTardive">Depart tardive</option>
                         <option value="Retour_precosse">Retour precosse</option>
+                        <option value="exec_vitesse">Exec de Vitesse</option>
                     </select>
 
                     <input type="datetime-local" 
@@ -244,7 +266,7 @@ const Rapports = () => {
             </div>
         </div>
             <div ref ={printRef}>
-                <Supportrapport/>
+                <Supportrapport type={type}/>
             </div>
 
             <div>
