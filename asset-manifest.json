@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/trackergps_fontend/static/css/main.a1e0e41a.css",
-    "main.js": "/trackergps_fontend/static/js/main.d21055d1.js",
+    "main.js": "/trackergps_fontend/static/js/main.b93e6240.js",
     "static/js/703.94b105c1.chunk.js": "/trackergps_fontend/static/js/703.94b105c1.chunk.js",
-    "static/js/513.3bafc084.chunk.js": "/trackergps_fontend/static/js/513.3bafc084.chunk.js",
+    "static/js/513.565deb6e.chunk.js": "/trackergps_fontend/static/js/513.565deb6e.chunk.js",
     "static/js/787.38f204d8.chunk.js": "/trackergps_fontend/static/js/787.38f204d8.chunk.js",
     "index.html": "/trackergps_fontend/index.html",
     "main.a1e0e41a.css.map": "/trackergps_fontend/static/css/main.a1e0e41a.css.map",
-    "main.d21055d1.js.map": "/trackergps_fontend/static/js/main.d21055d1.js.map",
+    "main.b93e6240.js.map": "/trackergps_fontend/static/js/main.b93e6240.js.map",
     "703.94b105c1.chunk.js.map": "/trackergps_fontend/static/js/703.94b105c1.chunk.js.map",
-    "513.3bafc084.chunk.js.map": "/trackergps_fontend/static/js/513.3bafc084.chunk.js.map",
+    "513.565deb6e.chunk.js.map": "/trackergps_fontend/static/js/513.565deb6e.chunk.js.map",
     "787.38f204d8.chunk.js.map": "/trackergps_fontend/static/js/787.38f204d8.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a1e0e41a.css",
-    "static/js/main.d21055d1.js"
+    "static/js/main.b93e6240.js"
   ]
 }
