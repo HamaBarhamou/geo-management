@@ -66,8 +66,8 @@ const Supportrapport = (props) => {
         return (
             <div>
                 <h1>Rapport  Exces de vitesse -</h1>
-                {console.log("extra",extractionVitess(props.data.data))}
-                <Table columns={columns_Generale} data={extractionVitess(props.data.data)} />
+                {console.log("extraaa",props.data.data)}
+                <Table columns={columns_Generale} data={[]/*extractionVitess(props.data.data)*/} />
                 
             </div>
         );
@@ -79,8 +79,9 @@ const Supportrapport = (props) => {
                     {props.data.data.map(todo=>{
                         //data.push({"name":todo.machineName,"id":todo.carId, alarmes:"todo.alarmCounts.map()"})
                         //setData(data.push({"name":todo.machineName,"id":todo.carId, alarmes:"todo.alarmCounts.map()"}))
+                        
                     })}
-                    <Table columns={columns_Generale} data={extractionVitess(props.data.data)} />
+                    <Table columns={columns_Generale} data={[]/*extractionVitess(props.data.data)*/} />
                     
                 </div>
             )

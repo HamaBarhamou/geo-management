@@ -30,6 +30,17 @@ const styleSetting={
 
 const Rapports = () => {
 
+    const dataCollection = [
+        {
+            id: 'periode',
+            title: 'periodicité',
+        },
+        {
+            id: 'Jour',
+            title: 'Jour de la semaine',
+        }
+    ]
+    
     const printRef = React.useRef();
     const {userdata, alarmType, proxy} = useContext(UserContext)
     const { register, handleSubmit } = useForm();
@@ -38,6 +49,8 @@ const Rapports = () => {
     const [buttonmesage, setButtonmessage] = useState("Generer Rapports")
     const [type, setType] = useState("General")
     const [datarapport, setDatarapport] = useState({});
+    const [vehicule, setVehicule] = useState([{"id": "", "title": ""}])
+    
     
     const handleDownloadPdf = async() => {
         // TODO: logic
@@ -77,7 +90,7 @@ const Rapports = () => {
         let url = proxy
         if (data.select === "General")
         {
-            url = url + "https://www.whatsgps.com/alarmSta/queryGroupByCar.do?userId=25096&token=d4aa0523-8ed7-457f-a282-2d1cd075a03e&startTime=2022-06-01%2009:07:21.20&endTime=2022-06-10%2009:07:21.20"
+            url = url + "https://www.whatsgps.com/alarmSta/queryGroupByCar.do?userId="+userdata.userId+"&token="+userdata.token+"&startTime=2022-06-01%2009:07:21.20&endTime=2022-06-10%2009:07:21.20"
             fetch(url)
             .then((resp)=>resp.json())
             .then((data)=>{
@@ -125,7 +138,8 @@ const Rapports = () => {
 
         if (data.select === "exec_vitesse")
         {
-            url = url + "https://www.whatsgps.com/alarmSta/queryGroupByCar.do?userId=25096&token=d4aa0523-8ed7-457f-a282-2d1cd075a03e&startTime=2022-06-01%2009:07:21.20&endTime=2022-06-10%2009:07:21.20"
+            /*//url = url + "https://www.whatsgps.com/alarmSta/queryGroupByCar.do?userId="+userdata.userId+"&token="+userdata.token+"&startTime=2022-06-01%2009:07:21.20&endTime=2022-06-10%2009:07:21.20"
+            url =  url + "https://www.whatsgps.com/position/getOverSpeedDetail.do?userId=25096&token=94790e51-7df4-4dde-8061-a6c50efdfbbb&carId=866200&startTime=2022-06-01%2009:07:21.20&endTime=2022-06-10%2009:07:21.20"
             fetch(url)
             .then((resp)=>resp.json())
             .then((data)=>{
@@ -138,12 +152,44 @@ const Rapports = () => {
                     setPdf(true)
                 setLoading(false)
             })
-            .then((error)=>console.log("rapport general error:",error))
-            console.log("Execs de vitesse")
+            .then((error)=>console.log("rapport general error:",error))*/
+
+            // telecharger le fichier exel
+            let url = proxy + "https://www.whatsgps.com/position/getOverSpeedDetailExport.do?userId="+userdata.userId+"&token="+userdata.token+"&carId="+data.selection_vehicule+"&startTime=2022-06-01 09:07:21.20&endTime=2022-06-10 09:07:21.20"
+            
+            fetch(url)
+            .then((res) => { return res.blob(); })
+            .then((data) => {
+            var a = document.createElement("a");
+            a.href = window.URL.createObjectURL(data);
+            a.download = "Rapport Exces de vitesse";
+            a.click();
+            });
+            
+            if(pdf)
+                setPdf(false)
+            else
+                setPdf(true)
+            setLoading(false)
+            console.log("Execs de vitesse", url)
         }
         
     }
-
+    const listdynamique =  ()=>{
+        let url = proxy + "https://www.whatsgps.com/alarmSta/queryGroupByCar.do?userId="+userdata.userId+"&token="+userdata.token+"&startTime=2022-06-01%2009:07:21.20&endTime=2022-06-10%2009:07:21.20"
+        //url =  url + "https://www.whatsgps.com/position/getOverSpeedDetail.do?userId=25096&token=94790e51-7df4-4dde-8061-a6c50efdfbbb&carId=866200&startTime=2022-06-01%2009:07:21.20&endTime=2022-06-10%2009:07:21.20"
+        fetch(url)
+        .then((resp)=>resp.json())
+        .then((data)=>{
+            
+            //console.log("liste dynamique:",d)
+            setVehicule(data.data.map(todo=>({id:todo.carId, title:todo.machineName})))
+            //console.log("veh1",vehicule)
+            //console.log("veh2",dataCollection)
+        })
+        .then((error)=>console.log("rapport general error:",error))
+        //setVehicule(dataCollection)
+    }
     const template1=(
         <div style={styleGlobale}>
         <Head/>
@@ -152,9 +198,10 @@ const Rapports = () => {
             <div style={{color: 'white',fontWeight: 900}}>
                 <h2>Rapports instantanés</h2>
             </div>
+            
             <form onSubmit={handleSubmit(handleRegistration)} style={{width: '98%'}}>
                 <div style={{display:'flex',margin:20,width:'100%'}} >
-                    <select name="pets" {...register('select')}>
+                    <select name="pets" {...register('select')} onChange={listdynamique}>
                         <option value="">--Please choose an option--</option>
                         <option value="General">Statistiques d'alarme</option>
                         <option value="ConduiteTime">Temps de Conduite</option>
@@ -164,6 +211,13 @@ const Rapports = () => {
                         <option value="DepartTardive">Depart tardive</option>
                         <option value="Retour_precosse">Retour precosse</option>
                         <option value="exec_vitesse">Exec de Vitesse</option>
+                    </select>
+
+                    <select name="selection_vehicule" {...register('selection_vehicule')}>
+                        <option value="">--Rapport de Vitesse--</option>
+                        {vehicule.map(
+                            (item)=> <option key={item.id} value={item.id}>{item.title}</option>
+                        )}
                     </select>
 
                     <input type="datetime-local" 
@@ -250,6 +304,13 @@ const Rapports = () => {
                         <option value="exec_vitesse">Exec de Vitesse</option>
                     </select>
 
+                    <select name="selection_vehicule" {...register('selection_vehicule')}>
+                        <option value="">--Rapport de Vitesse--</option>
+                        {vehicule.map(
+                            (item)=> <option key={item.id} value={item.id}>{item.title}</option>
+                        )}
+                    </select>
+
                     <input type="datetime-local" 
                         name="begindate" {...register('begindate')} 
                     />
@@ -274,7 +335,7 @@ const Rapports = () => {
 
             <div>
                 <button type='button' onClick={handleDownloadPdf}>
-                    Telecharger PDF
+                    Telecharger  format PDF
                 </button>
             </div>
         </div>
