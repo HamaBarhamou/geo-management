@@ -6,7 +6,7 @@
 /*   By: Barhamou <hamabarhamou@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 10:52:44 by Barhamou          #+#    #+#             */
-/*   Updated: 2022/06/12 13:33:44 by Barhamou         ###   ########.fr       */
+/*   Updated: 2022/06/18 10:57:48 by Barhamou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,7 @@ const Setting = () => {
         //console.log("avant collection=", collection);
         setColletion(getIdCollection(dataCollection,data.value));
         //console.log("apres collection=",collection);
+        console.log("bug:",data)
         
     };
     const Template1 = <div style={styleSetting}>
