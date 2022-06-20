@@ -133,7 +133,7 @@ const Rapports = () => {
             .then((data) => {
             var a = document.createElement("a");
             a.href = window.URL.createObjectURL(data);
-            a.download = "Rapport Exces de vitesse";
+            a.download = "Rapport StaVoyage";
             a.click();
             });
         }
