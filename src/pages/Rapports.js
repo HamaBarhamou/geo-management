@@ -107,9 +107,35 @@ const Rapports = () => {
             .then((error)=>console.log("rapport general error:",error))
         }
 
-        if (data.select === "ConduiteTime")
+        if (data.select === "TravelStatistics")
         {
-            console.log("Temps de conduite")
+            console.log("Statistique sur le voyage")
+            url =  url + "https://www.whatsgps.com/position/distanceSta.do?userId="+userdata.userId+"&token="+userdata.token+"&carId="+data.selection_vehicule+"&startTime=2022-06-01%2009:07:21.20&endTime=2022-06-10%2009:07:21.20"
+            fetch(url)
+            .then((resp)=>resp.json())
+            .then((data)=>{
+                setDatarapport(data)
+                //console.log("voyage:",data)
+
+                if(pdf)
+                    setPdf(false)
+                else
+                    setPdf(true)
+                setLoading(false)
+            })
+            .then((error)=>console.log("voyage error:",error))
+
+            // telecharger le fichier exel
+            let urlExel = proxy + "https://www.whatsgps.com/position/distanceStaExport.do?userId="+userdata.userId+"&token="+userdata.token+"&carId="+data.selection_vehicule+"&startTime=2022-06-01%2009:07:21.20&endTime=2022-06-10%2009:07:21.20"
+            
+            fetch(urlExel)
+            .then((res) => { return res.blob(); })
+            .then((data) => {
+            var a = document.createElement("a");
+            a.href = window.URL.createObjectURL(data);
+            a.download = "Rapport Exces de vitesse";
+            a.click();
+            });
         }
 
         if (data.select === "Comportement_conducteur")
@@ -211,7 +237,7 @@ const Rapports = () => {
                     <select name="pets" {...register('select')} onChange={listdynamique}>
                         <option value="">--Please choose an option--</option>
                         <option value="General">Statistiques d'alarme</option>
-                        <option value="ConduiteTime">Temps de Conduite</option>
+                        <option value="TravelStatistics">Statistiques sur les voyages</option>
                         <option value="Comportement_conducteur">Comportement du conducteur</option>
                         <option value="Kilometrage">Kilometrage</option>
                         <option value="Arret">Arret</option>
@@ -259,7 +285,7 @@ const Rapports = () => {
                     <select name="pets" {...register('select')}>
                         <option value="">--Please choose an option--</option>
                         <option value="General">Statistiques d'alarme</option>
-                        <option value="ConduiteTime">Temps de Conduite</option>
+                        <option value="TravelStatistics">Statistiques sur les voyages</option>
                         <option value="Comportement_conducteur">Comportement du conducteur</option>
                         <option value="Kilometrage">Kilometrage</option>
                         <option value="Arret">Arret</option>
@@ -302,7 +328,7 @@ const Rapports = () => {
                     <select name="pets" {...register('select')}>
                         <option value="">--Please choose an option--</option>
                         <option value="General">Statistiques d'alarme</option>
-                        <option value="ConduiteTime">Temps de Conduite</option>
+                        <option value="TravelStatistics">Statistiques sur les voyages</option>
                         <option value="Comportement_conducteur">Comportement du conducteur</option>
                         <option value="Kilometrage">Kilometrage</option>
                         <option value="Arret">Arret</option>

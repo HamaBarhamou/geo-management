@@ -10,7 +10,7 @@ import { UserContext } from '../App';
 
 const Supportrapport = (props) => {
 
-  const columns = [
+  const columns_excesvitesse = [
     {
       title: 'Alarm',
       dataIndex: 'alarm',
@@ -68,6 +68,60 @@ const Supportrapport = (props) => {
     },
    
   ];
+
+  const columns_StaVoyage = [
+    {
+      title: 'Heure de début',
+      dataIndex: 'startTime',
+      key: 'startTime',
+      width: 200,
+    },
+    {
+      title: 'Heure de fin',
+      dataIndex: 'endTime',
+      key: 'endTime',
+      width: 200,
+    },
+    {
+      title: 'kilométrage',
+      dataIndex: 'mileage',
+      key: 'mileage',
+      width: 120,
+    },
+    {
+      title: 'Vitesse moyenne',
+      dataIndex: 'averageSpeed',
+      key: 'averageSpeed',
+      width: 100,
+    },
+    {
+      title: 'Vitesse maximale',
+      dataIndex: 'maxSpeed',
+      key: 'maxSpeed',
+      width: 100,
+    },
+    {
+      title: 'Durée du voyage',
+      dataIndex: 'travel',
+      key: 'travel',
+      width: 100,
+    },
+    
+    {
+      title: 'Lieu de départ',
+      dataIndex: 'startLocation',
+      key: 'startLocation',
+      render: (data) => <a href={data}>{data}</a>,
+      width: 200,
+    },
+    {
+      title: 'Lieu d\'arriver',
+      dataIndex: 'endLocation',
+      key: 'endLocation',
+      render: (data) => <a href={data}>{data}</a>,
+      width: 200,
+    },
+  ]
   
 
     const [offset, setOffset] = useState(0);
@@ -77,6 +131,7 @@ const Supportrapport = (props) => {
     const [date, setDate] = useState(new Date())
     const [data, setData] = useState([]);
     const {alarmType} = useContext(UserContext)
+    const [columns, setColumns] = useState([])
 
 
     
@@ -100,12 +155,20 @@ const Supportrapport = (props) => {
 
     useEffect(() => {
       //let donner = extractionData(props.data.data,"exec_vitesse")
-      setData(props.data.data)
+      if (props.type == "exec_vitesse")
+      {
+        setColumns(columns_excesvitesse)
+      }
+      if (props.type == "TravelStatistics")
+      {
+        setColumns(columns_StaVoyage)
+      }
       console.log("useEffet data:",props.data.data)
+      setData(props.data.data)
       setCurrentData(data.slice(offset, offset + pageLimit));
     }, [offset, data]);
 
-    if (props.type == "exec_vitesse")
+    if (props.type == "exec_vitesse"){
         return (
             <div>
                 <h1>Rapport  Exces de vitesse -</h1>
@@ -120,15 +183,38 @@ const Supportrapport = (props) => {
                 />
             </div>
         );
-    if (props.type == "General")
+    }
+    if (props.type == "General"){
             return(
                 <div>
                     <h1>Statistiques General </h1>
                     
                     <Table columns={[]} data={[]/*extractionData(props.data.data,General)*/} />
                     
+
                 </div>
             )
+    }
+
+    if (props.type == "TravelStatistics"){
+            return(
+                <div>
+                    <h1>Statistiques sur les voyages </h1>
+                    
+                    
+                    <Table columns={columns} data={currentData} />
+                    <Paginator
+                      totalRecords={data.length}
+                      pageLimit={pageLimit}
+                      pageNeighbours={1}
+                      setOffset={setOffset}
+                      currentPage={currentPage}
+                      setCurrentPage={setCurrentPage}
+                    />
+
+                </div>
+            )
+    }
 };
 
 export default Supportrapport;
