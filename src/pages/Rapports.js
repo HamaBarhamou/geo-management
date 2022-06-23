@@ -51,6 +51,8 @@ const Rapports = () => {
     const [datarapport, setDatarapport] = useState({});
     const [vehicule, setVehicule] = useState([{"id": "", "title": ""}])
     const [carId,setCarId] = useState();
+    const [starttime, setStarttime] = useState("2022-06-01%2009:07:21.20")
+    const [endtime, setEndetime] = useState("2022-06-10%2009:07:21.20")
     
     
     const handleDownloadPdf = async() => {
@@ -91,26 +93,13 @@ const Rapports = () => {
         let url = proxy
         if (data.select === "General")
         {
-            url = url + "https://www.whatsgps.com/alarmSta/queryGroupByCar.do?userId="+userdata.userId+"&token="+userdata.token+"&startTime=2022-06-01%2009:07:21.20&endTime=2022-06-10%2009:07:21.20"
-            fetch(url)
-            .then((resp)=>resp.json())
-            .then((data)=>{
-                setDatarapport(data)
-                console.log("rapport general:",data)
-
-                if(pdf)
-                    setPdf(false)
-                else
-                    setPdf(true)
-                setLoading(false)
-            })
-            .then((error)=>console.log("rapport general error:",error))
+           
         }
 
         if (data.select === "TravelStatistics")
         {
             console.log("Statistique sur le voyage")
-            url =  url + "https://www.whatsgps.com/position/distanceSta.do?userId="+userdata.userId+"&token="+userdata.token+"&carId="+data.selection_vehicule+"&startTime=2022-06-01%2009:07:21.20&endTime=2022-06-10%2009:07:21.20"
+            url =  url + "https://www.whatsgps.com/position/distanceSta.do?userId="+userdata.userId+"&token="+userdata.token+"&carId="+data.selection_vehicule+"&startTime="+starttime+"&endTime="+endtime
             fetch(url)
             .then((resp)=>resp.json())
             .then((data)=>{
@@ -126,7 +115,7 @@ const Rapports = () => {
             .then((error)=>console.log("voyage error:",error))
 
             // telecharger le fichier exel
-            let urlExel = proxy + "https://www.whatsgps.com/position/distanceStaExport.do?userId="+userdata.userId+"&token="+userdata.token+"&carId="+data.selection_vehicule+"&startTime=2022-06-01%2009:07:21.20&endTime=2022-06-10%2009:07:21.20"
+            let urlExel = proxy + "https://www.whatsgps.com/position/distanceStaExport.do?userId="+userdata.userId+"&token="+userdata.token+"&carId="+data.selection_vehicule+"&startTime="+starttime+"&endTime="+endtime
             
             fetch(urlExel)
             .then((res) => { return res.blob(); })
@@ -143,9 +132,35 @@ const Rapports = () => {
             console.log("Comportement du conducteur")
         }
 
-        if (data.select === "Kilometrage")
+        if (data.select === "mileage_detail")
         {
-            console.log("Kilometrage parcourrue")
+            //console.log("détail des kilométrages")
+            url =  url + "https://www.whatsgps.com/position/mileageStaByDay.do?userId="+userdata.userId+"&token="+userdata.token+"&carId="+data.selection_vehicule+"&startTime="+starttime+"&endTime="+endtime
+            fetch(url)
+            .then((resp)=>resp.json())
+            .then((data)=>{
+                setDatarapport(data)
+                //console.log("voyage:",data)
+
+                if(pdf)
+                    setPdf(false)
+                else
+                    setPdf(true)
+                setLoading(false)
+            })
+            .then((error)=>console.log("détail des kilométrages error:",error))
+
+            // telecharger le fichier exel
+            let urlExel = proxy + "https://www.whatsgps.com/position/mileageStaByDayExport.do?userId="+userdata.userId+"&token="+userdata.token+"&carId="+data.selection_vehicule+"&startTime="+starttime+"&endTime="+endtime
+            
+            fetch(urlExel)
+            .then((res) => { return res.blob(); })
+            .then((data) => {
+            var a = document.createElement("a");
+            a.href = window.URL.createObjectURL(data);
+            a.download = "Rapport Détail des kilometrage";
+            a.click();
+            });
         }
 
         if (data.select === "Arret")
@@ -158,16 +173,42 @@ const Rapports = () => {
             console.log("Depart Tardive")
         }
 
-        if (data.select === "Retour_precosse")
+        if (data.select === "statistical_overview")
         {
-            console.log("Retour precosse")
+            url =  url + "https://www.whatsgps.com/position/getStaOverview.do?userId="+userdata.userId+"&token="+userdata.token+"&carId="+data.selection_vehicule+"&startTime="+starttime+"&endTime="+endtime
+            fetch(url)
+            .then((resp)=>resp.json())
+            .then((data)=>{
+                setDatarapport(data)
+                console.log("Apercu statistique: ",data)
+
+                if(pdf)
+                    setPdf(false)
+                else
+                    setPdf(true)
+                setLoading(false)
+            })
+            .then((error)=>console.log("Apercu statistique error:",error))
+
+            // telecharger le fichier exel
+            let urlExel = proxy + "https://www.whatsgps.com/position/getStaOverviewExport.do?userId="+userdata.userId+"&token="+userdata.token+"&carId="+data.selection_vehicule+"&startTime="+starttime+"&endTime="+endtime
+            
+            fetch(urlExel)
+            .then((res) => { return res.blob(); })
+            .then((data) => {
+            var a = document.createElement("a");
+            a.href = window.URL.createObjectURL(data);
+            a.download = "Rapport Apercu Statistique";
+            a.click();
+            });
+            //console.log("Apercu statistique")
         }
 
         if (data.select === "exec_vitesse")
         {
             //console.log("cardId="+carId+" data.selection_vehicule="+data.selection_vehicule)
             //url = url + "https://www.whatsgps.com/alarmSta/queryGroupByCar.do?userId="+userdata.userId+"&token="+userdata.token+"&startTime=2022-06-01%2009:07:21.20&endTime=2022-06-10%2009:07:21.20"
-            url =  url + "https://www.whatsgps.com/position/getOverSpeedDetail.do?userId="+userdata.userId+"&token="+userdata.token+"&carId="+data.selection_vehicule+"&startTime=2022-06-01%2009:07:21.20&endTime=2022-06-10%2009:07:21.20"
+            url =  url + "https://www.whatsgps.com/position/getOverSpeedDetail.do?userId="+userdata.userId+"&token="+userdata.token+"&carId="+data.selection_vehicule+"&startTime="+starttime+"&endTime="+endtime
             fetch(url)
             .then((resp)=>resp.json())
             .then((data)=>{
@@ -183,7 +224,7 @@ const Rapports = () => {
             .then((error)=>console.log("rapport general error:",error))
 
             // telecharger le fichier exel
-            let urlExel = proxy + "https://www.whatsgps.com/position/getOverSpeedDetailExport.do?userId="+userdata.userId+"&token="+userdata.token+"&carId="+data.selection_vehicule+"&startTime=2022-06-01 09:07:21.20&endTime=2022-06-10 09:07:21.20"
+            let urlExel = proxy + "https://www.whatsgps.com/position/getOverSpeedDetailExport.do?userId="+userdata.userId+"&token="+userdata.token+"&carId="+data.selection_vehicule+"&startTime="+starttime+"&endTime="+endtime
             
             fetch(urlExel)
             .then((res) => { return res.blob(); })
@@ -204,7 +245,7 @@ const Rapports = () => {
         
     }
     const listdynamique = () =>{
-        let url = proxy + "https://www.whatsgps.com/alarmSta/queryGroupByCar.do?userId="+userdata.userId+"&token="+userdata.token+"&startTime=2022-06-01%2009:07:21.20&endTime=2022-06-10%2009:07:21.20"
+        let url = proxy + "https://www.whatsgps.com/alarmSta/queryGroupByCar.do?userId="+userdata.userId+"&token="+userdata.token+"&startTime="+starttime+"&endTime="+endtime
         //url =  url + "https://www.whatsgps.com/position/getOverSpeedDetail.do?userId=25096&token=94790e51-7df4-4dde-8061-a6c50efdfbbb&carId=866200&startTime=2022-06-01%2009:07:21.20&endTime=2022-06-10%2009:07:21.20"
         fetch(url)
         .then((resp)=>resp.json())
@@ -236,13 +277,9 @@ const Rapports = () => {
                 <div style={{display:'flex',margin:20,width:'100%'}} >
                     <select name="pets" {...register('select')} onChange={listdynamique}>
                         <option value="">--Please choose an option--</option>
-                        <option value="General">Statistiques d'alarme</option>
                         <option value="TravelStatistics">Statistiques sur les voyages</option>
-                        <option value="Comportement_conducteur">Comportement du conducteur</option>
-                        <option value="Kilometrage">Kilometrage</option>
-                        <option value="Arret">Arret</option>
-                        <option value="DepartTardive">Depart tardive</option>
-                        <option value="Retour_precosse">Retour precosse</option>
+                        <option value="mileage_detail">détail des kilométrages</option>
+                        <option value="statistical_overview">Aperçu statistique</option>
                         <option value="exec_vitesse">Exec de Vitesse</option>
                     </select>
 
@@ -284,13 +321,9 @@ const Rapports = () => {
                 <div style={{display:'flex',margin:20,width:'100%'}} >
                     <select name="pets" {...register('select')}>
                         <option value="">--Please choose an option--</option>
-                        <option value="General">Statistiques d'alarme</option>
                         <option value="TravelStatistics">Statistiques sur les voyages</option>
-                        <option value="Comportement_conducteur">Comportement du conducteur</option>
-                        <option value="Kilometrage">Kilometrage</option>
-                        <option value="Arret">Arret</option>
-                        <option value="DepartTardive">Depart tardive</option>
-                        <option value="Retour_precosse">Retour precosse</option>
+                        <option value="mileage_detail">détail des kilométrages</option>
+                        <option value="statistical_overview">Aperçu statistique</option>
                         <option value="exec_vitesse">Exec de Vitesse</option>
                     </select>
 
@@ -327,13 +360,9 @@ const Rapports = () => {
                 <div style={{display:'flex',margin:20,width:'100%'}}>
                     <select name="pets" {...register('select')}>
                         <option value="">--Please choose an option--</option>
-                        <option value="General">Statistiques d'alarme</option>
                         <option value="TravelStatistics">Statistiques sur les voyages</option>
-                        <option value="Comportement_conducteur">Comportement du conducteur</option>
-                        <option value="Kilometrage">Kilometrage</option>
-                        <option value="Arret">Arret</option>
-                        <option value="DepartTardive">Depart tardive</option>
-                        <option value="Retour_precosse">Retour precosse</option>
+                        <option value="mileage_detail">détail des kilométrages</option>
+                        <option value="statistical_overview">Aperçu statistique</option>
                         <option value="exec_vitesse">Exec de Vitesse</option>
                     </select>
 
