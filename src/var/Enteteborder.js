@@ -88,8 +88,42 @@ export const columns_Statistical_Overview = [
     },
    
   ];
-  export const columns_mileage_detail = [
+
+  export const columns_parking_detail = [
     {
+      title: 'Heure de début',
+      dataIndex: 'startTime',
+      key: 'startTime',
+      width: 200,
+    },
+    {
+      title: 'Heure de fin',
+      dataIndex: 'endTime',
+      key: 'endTime',
+      width: 200,
+    },
+    {
+      title: 'Heure statique',
+      dataIndex: 'heurestatique',
+      key: 'heurestatique',
+      width: 100,
+    },
+    {
+      title: 'Stop Time',
+      dataIndex: 'stopTime',
+      key: 'stopTime',
+      width: 100,
+    },
+    {
+      title: 'Adresse',
+      dataIndex: 'adresse',
+      key: 'adresse',
+      width: 200,
+    },
+  ]
+
+  export const columns_mileage_detail = [
+      {
         title: 'Day',
         dataIndex: 'day',
         key: 'day',

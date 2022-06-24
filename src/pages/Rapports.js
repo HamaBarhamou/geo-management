@@ -91,14 +91,40 @@ const Rapports = () => {
         
         setLoading(true)
         let url = proxy
-        if (data.select === "General")
+        if (data.select === "parking_detail")
         {
-           
+           //console.log("Détails du stationnement")
+           url =  url + "https://www.whatsgps.com/position/getStopDetail.do?userId="+userdata.userId+"&token="+userdata.token+"&carId="+data.selection_vehicule+"&startTime="+starttime+"&endTime="+endtime
+            fetch(url)
+            .then((resp)=>resp.json())
+            .then((data)=>{
+                setDatarapport(data)
+                //console.log("voyage:",data)
+
+                if(pdf)
+                    setPdf(false)
+                else
+                    setPdf(true)
+                setLoading(false)
+            })
+            .then((error)=>console.log("Detail positionnement error:",error))
+
+            // telecharger le fichier exel
+            let urlExel = proxy + "https://www.whatsgps.com/position/getStopDetailExport.do?userId="+userdata.userId+"&token="+userdata.token+"&carId="+data.selection_vehicule+"&startTime="+starttime+"&endTime="+endtime
+            
+            fetch(urlExel)
+            .then((res) => { return res.blob(); })
+            .then((data) => {
+            var a = document.createElement("a");
+            a.href = window.URL.createObjectURL(data);
+            a.download = "Rapport Détail de stationnement";
+            a.click();
+            });
         }
 
         if (data.select === "TravelStatistics")
         {
-            console.log("Statistique sur le voyage")
+            //console.log("Statistique sur le voyage")
             url =  url + "https://www.whatsgps.com/position/distanceSta.do?userId="+userdata.userId+"&token="+userdata.token+"&carId="+data.selection_vehicule+"&startTime="+starttime+"&endTime="+endtime
             fetch(url)
             .then((resp)=>resp.json())
@@ -281,6 +307,7 @@ const Rapports = () => {
                         <option value="mileage_detail">détail des kilométrages</option>
                         <option value="statistical_overview">Aperçu statistique</option>
                         <option value="exec_vitesse">Exec de Vitesse</option>
+                        <option value="parking_detail">détail du stationnement</option>
                     </select>
 
                     <select name="selection_vehicule" {...register('selection_vehicule')} /*onChange={selectionVehicule}*/>
@@ -325,6 +352,7 @@ const Rapports = () => {
                         <option value="mileage_detail">détail des kilométrages</option>
                         <option value="statistical_overview">Aperçu statistique</option>
                         <option value="exec_vitesse">Exec de Vitesse</option>
+                        <option value="parking_detail">détail du stationnement</option>
                     </select>
 
                     <input type="datetime-local" 
@@ -364,6 +392,7 @@ const Rapports = () => {
                         <option value="mileage_detail">détail des kilométrages</option>
                         <option value="statistical_overview">Aperçu statistique</option>
                         <option value="exec_vitesse">Exec de Vitesse</option>
+                        <option value="parking_detail">détail du stationnement</option>
                     </select>
 
                     <select name="selection_vehicule" {...register('selection_vehicule')}>

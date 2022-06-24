@@ -6,7 +6,8 @@ import { UserContext } from '../App';
 import { columns_excesvitesse, 
          columns_Statistical_Overview,
          columns_StaVoyage,
-         columns_mileage_detail
+         columns_mileage_detail,
+         columns_parking_detail
         } from '../var/Enteteborder';
 
 
@@ -46,7 +47,12 @@ const Supportrapport = (props) => {
       if (props.type == "mileage_detail")
       {
         setColumns(columns_mileage_detail)
-        setMessage("détail des kilométrages")
+        setMessage("Détail des kilométrages")
+      }
+      if (props.type == "parking_detail")
+      {
+        setColumns(columns_parking_detail)
+        setMessage("Détail de stationnement")
       }
       
       console.log("useEffet data:",props.data.data)
