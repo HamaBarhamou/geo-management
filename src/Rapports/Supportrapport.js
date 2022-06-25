@@ -56,7 +56,10 @@ const Supportrapport = (props) => {
       }
       
       console.log("useEffet data:",props.data.data)
-      setData(props.data.data)
+      if (props.data.ret == 0)
+        setData([])
+      else
+        setData(props.data.data)
       setCurrentData(data.slice(offset, offset + pageLimit));
     }, [offset, data]);
 

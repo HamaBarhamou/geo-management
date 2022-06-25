@@ -53,6 +53,7 @@ const Rapports = () => {
     const [carId,setCarId] = useState();
     const [starttime, setStarttime] = useState("2022-06-01%2009:07:21.20")
     const [endtime, setEndetime] = useState("2022-06-10%2009:07:21.20")
+    const [messageraport, setMessagerapport] = useState("")
     
     
     const handleDownloadPdf = async() => {
@@ -78,8 +79,7 @@ const Rapports = () => {
 
     };
     const handleRegistration = (data)=>{
-        //console.log(userdata);
-        // introgation de l'api
+
         setType(data.select)
         if (data.select == "")
         {
@@ -88,186 +88,62 @@ const Rapports = () => {
             return;
         }
 
-        
         setLoading(true)
         let url = proxy
+        let urlExel= proxy
         if (data.select === "parking_detail")
         {
-           //console.log("Détails du stationnement")
            url =  url + "https://www.whatsgps.com/position/getStopDetail.do?userId="+userdata.userId+"&token="+userdata.token+"&carId="+data.selection_vehicule+"&startTime="+starttime+"&endTime="+endtime
-            fetch(url)
-            .then((resp)=>resp.json())
-            .then((data)=>{
-                setDatarapport(data)
-                //console.log("voyage:",data)
-
-                if(pdf)
-                    setPdf(false)
-                else
-                    setPdf(true)
-                setLoading(false)
-            })
-            .then((error)=>console.log("Detail positionnement error:",error))
-
-            // telecharger le fichier exel
-            let urlExel = proxy + "https://www.whatsgps.com/position/getStopDetailExport.do?userId="+userdata.userId+"&token="+userdata.token+"&carId="+data.selection_vehicule+"&startTime="+starttime+"&endTime="+endtime
-            
-            fetch(urlExel)
-            .then((res) => { return res.blob(); })
-            .then((data) => {
-            var a = document.createElement("a");
-            a.href = window.URL.createObjectURL(data);
-            a.download = "Rapport Détail de stationnement";
-            a.click();
-            });
+           urlExel = urlExel + "https://www.whatsgps.com/position/getStopDetailExport.do?userId="+userdata.userId+"&token="+userdata.token+"&carId="+data.selection_vehicule+"&startTime="+starttime+"&endTime="+endtime
         }
 
         if (data.select === "TravelStatistics")
         {
-            //console.log("Statistique sur le voyage")
             url =  url + "https://www.whatsgps.com/position/distanceSta.do?userId="+userdata.userId+"&token="+userdata.token+"&carId="+data.selection_vehicule+"&startTime="+starttime+"&endTime="+endtime
-            fetch(url)
-            .then((resp)=>resp.json())
-            .then((data)=>{
-                setDatarapport(data)
-                //console.log("voyage:",data)
-
-                if(pdf)
-                    setPdf(false)
-                else
-                    setPdf(true)
-                setLoading(false)
-            })
-            .then((error)=>console.log("voyage error:",error))
-
-            // telecharger le fichier exel
-            let urlExel = proxy + "https://www.whatsgps.com/position/distanceStaExport.do?userId="+userdata.userId+"&token="+userdata.token+"&carId="+data.selection_vehicule+"&startTime="+starttime+"&endTime="+endtime
-            
-            fetch(urlExel)
-            .then((res) => { return res.blob(); })
-            .then((data) => {
-            var a = document.createElement("a");
-            a.href = window.URL.createObjectURL(data);
-            a.download = "Rapport StaVoyage";
-            a.click();
-            });
-        }
-
-        if (data.select === "Comportement_conducteur")
-        {
-            console.log("Comportement du conducteur")
+            urlExel = urlExel + "https://www.whatsgps.com/position/distanceStaExport.do?userId="+userdata.userId+"&token="+userdata.token+"&carId="+data.selection_vehicule+"&startTime="+starttime+"&endTime="+endtime
         }
 
         if (data.select === "mileage_detail")
         {
-            //console.log("détail des kilométrages")
             url =  url + "https://www.whatsgps.com/position/mileageStaByDay.do?userId="+userdata.userId+"&token="+userdata.token+"&carId="+data.selection_vehicule+"&startTime="+starttime+"&endTime="+endtime
-            fetch(url)
-            .then((resp)=>resp.json())
-            .then((data)=>{
-                setDatarapport(data)
-                //console.log("voyage:",data)
-
-                if(pdf)
-                    setPdf(false)
-                else
-                    setPdf(true)
-                setLoading(false)
-            })
-            .then((error)=>console.log("détail des kilométrages error:",error))
-
-            // telecharger le fichier exel
-            let urlExel = proxy + "https://www.whatsgps.com/position/mileageStaByDayExport.do?userId="+userdata.userId+"&token="+userdata.token+"&carId="+data.selection_vehicule+"&startTime="+starttime+"&endTime="+endtime
-            
-            fetch(urlExel)
-            .then((res) => { return res.blob(); })
-            .then((data) => {
-            var a = document.createElement("a");
-            a.href = window.URL.createObjectURL(data);
-            a.download = "Rapport Détail des kilometrage";
-            a.click();
-            });
-        }
-
-        if (data.select === "Arret")
-        {
-            console.log("Arret effectuer")
-        }
-
-        if (data.select === "DepartTardive")
-        {
-            console.log("Depart Tardive")
+            urlExel = urlExel + "https://www.whatsgps.com/position/mileageStaByDayExport.do?userId="+userdata.userId+"&token="+userdata.token+"&carId="+data.selection_vehicule+"&startTime="+starttime+"&endTime="+endtime
         }
 
         if (data.select === "statistical_overview")
         {
             url =  url + "https://www.whatsgps.com/position/getStaOverview.do?userId="+userdata.userId+"&token="+userdata.token+"&carId="+data.selection_vehicule+"&startTime="+starttime+"&endTime="+endtime
-            fetch(url)
-            .then((resp)=>resp.json())
-            .then((data)=>{
-                setDatarapport(data)
-                console.log("Apercu statistique: ",data)
-
-                if(pdf)
-                    setPdf(false)
-                else
-                    setPdf(true)
-                setLoading(false)
-            })
-            .then((error)=>console.log("Apercu statistique error:",error))
-
-            // telecharger le fichier exel
-            let urlExel = proxy + "https://www.whatsgps.com/position/getStaOverviewExport.do?userId="+userdata.userId+"&token="+userdata.token+"&carId="+data.selection_vehicule+"&startTime="+starttime+"&endTime="+endtime
-            
-            fetch(urlExel)
-            .then((res) => { return res.blob(); })
-            .then((data) => {
-            var a = document.createElement("a");
-            a.href = window.URL.createObjectURL(data);
-            a.download = "Rapport Apercu Statistique";
-            a.click();
-            });
-            //console.log("Apercu statistique")
+            urlExel = urlExel + "https://www.whatsgps.com/position/getStaOverviewExport.do?userId="+userdata.userId+"&token="+userdata.token+"&carId="+data.selection_vehicule+"&startTime="+starttime+"&endTime="+endtime
         }
 
         if (data.select === "exec_vitesse")
-        {
-            //console.log("cardId="+carId+" data.selection_vehicule="+data.selection_vehicule)
-            //url = url + "https://www.whatsgps.com/alarmSta/queryGroupByCar.do?userId="+userdata.userId+"&token="+userdata.token+"&startTime=2022-06-01%2009:07:21.20&endTime=2022-06-10%2009:07:21.20"
+        {   
             url =  url + "https://www.whatsgps.com/position/getOverSpeedDetail.do?userId="+userdata.userId+"&token="+userdata.token+"&carId="+data.selection_vehicule+"&startTime="+starttime+"&endTime="+endtime
-            fetch(url)
-            .then((resp)=>resp.json())
-            .then((data)=>{
-                setDatarapport(data)
-                console.log("rapport general:",data)
+            urlExel = urlExel + "https://www.whatsgps.com/position/getOverSpeedDetailExport.do?userId="+userdata.userId+"&token="+userdata.token+"&carId="+data.selection_vehicule+"&startTime="+starttime+"&endTime="+endtime
+        }
 
-                if(pdf)
-                    setPdf(false)
-                else
-                    setPdf(true)
-                setLoading(false)
-            })
-            .then((error)=>console.log("rapport general error:",error))
 
-            // telecharger le fichier exel
-            let urlExel = proxy + "https://www.whatsgps.com/position/getOverSpeedDetailExport.do?userId="+userdata.userId+"&token="+userdata.token+"&carId="+data.selection_vehicule+"&startTime="+starttime+"&endTime="+endtime
-            
-            fetch(urlExel)
-            .then((res) => { return res.blob(); })
-            .then((data) => {
-            var a = document.createElement("a");
-            a.href = window.URL.createObjectURL(data);
-            a.download = "Rapport Exces de vitesse";
-            a.click();
-            });
-            
-            /*if(pdf)
+        fetch(url)
+        .then((resp)=>resp.json())
+        .then((data)=>{
+            setDatarapport(data)
+            console.log("rapport general:",data)
+
+            if(pdf)
                 setPdf(false)
             else
                 setPdf(true)
-            setLoading(false)*/
-            console.log("Execs de vitesse/urlExel:", urlExel)
-        }
+            setLoading(false)
+        })
+        .then((error)=>console.log(messageraport +"error:",error))
+
+        fetch(urlExel)
+        .then((res) => { return res.blob(); })
+        .then((data) => {
+        var a = document.createElement("a");
+        a.href = window.URL.createObjectURL(data);
+        a.download = "Rapport";
+        a.click();
+        });
         
     }
     const listdynamique = () =>{
@@ -282,7 +158,7 @@ const Rapports = () => {
             //console.log("veh1",vehicule)
             //console.log("veh2",dataCollection)
         })
-        .then((error)=>console.log("rapport general error:",error))
+        .then((error)=>console.log("liste dynamique error:",error))
         //setVehicule(dataCollection)
     }
     const selectionVehicule = (event) =>{
